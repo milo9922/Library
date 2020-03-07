@@ -8,23 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Blog Template · Bootstrap</title>
+    <title>Biblioteka</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
-    <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#563d7c">
-
 
     <script type="text/javascript"
             src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Rh8Sv5TRfjho9G4eD1ScoLWD-puyQ75r15gJ-aW_nPHmkQUiXtTpwkHkbneRXyREzU8gn2AvoHPMqmGsaRgu10m8L60KjjKwnztEWl1im24"
@@ -77,9 +66,9 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 text-muted" href="#">O nas</a>
-            <a class="p-2 text-muted" href="#">U.S.</a>
-            <a class="p-2 text-muted" href="#">Technology</a>
-            <a class="p-2 text-muted" href="#">Design</a>
+            <a class="p-2 text-muted" href="#">Spis książek</a>
+            <a class="p-2 text-muted" href="#">Wypożycz</a>
+            <a class="p-2 text-muted" href="#">Dodaj</a>
             <a class="p-2 text-muted" href="#">Culture</a>
             <a class="p-2 text-muted" href="#">Business</a>
             <a class="p-2 text-muted" href="#">Politics</a>
@@ -107,7 +96,7 @@
                     <br>
                     <p class="card-text mb-auto">Wypełnij krótki formularz, a my postaramy się uzupełnić naszą ofertę
                         jak najszybciej!</p>
-                    <a href="#" class="stretched-link">Sprawdź...</a>
+                    <a href="/books/add" class="stretched-link">Sprawdź...</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -185,30 +174,14 @@
                     sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
             </div>
 
-            <div class="p-4">
-                <h4 class="font-italic">Archives</h4>
-                <ol class="list-unstyled mb-0">
-                    <li><a href="#">March 2014</a></li>
-                    <li><a href="#">February 2014</a></li>
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                </ol>
-            </div>
+
 
             <div class="p-4">
-                <h4 class="font-italic">Elsewhere</h4>
+                <h4 class="font-italic">Znajdziesz nas na</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
+                    <li><a href="https://github.com/">GitHub</a></li>
+                    <li><a href="https://twitter.com/">Twitter</a></li>
+                    <li><a href="https://www.facebook.com/">Facebook</a></li>
                 </ol>
             </div>
         </aside><!-- /.blog-sidebar -->

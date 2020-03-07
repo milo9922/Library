@@ -6,17 +6,18 @@ public class Book {
     private String title;
     private String author;
     private int pagesNum;
+    private int userId;
 
     public Book() {
     }
 
-    public Book(int id, String title, String author, int pagesNum) {
+    public Book(int id, String title, String author, int pagesNum, int userId) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.pagesNum = pagesNum;
+        this.userId = userId;
     }
-
     public int getId() {
         return id;
     }
@@ -47,5 +48,13 @@ public class Book {
 
     public void setPagesNum(int pagesNum) {
         this.pagesNum = pagesNum;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

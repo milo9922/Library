@@ -201,7 +201,8 @@ caption {
 }
 
 th {
-    text-align: inherit
+    text-align: center;
+    padding: 5px;
 }
 
 label {
