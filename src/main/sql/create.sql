@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS TB_BOOK
     Title    varchar(30) NOT NULL,
     Author   varchar(30) NOT NULL,
     PagesNum int,
-    UserID int UNIQUE
+    UserID int
 );

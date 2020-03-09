@@ -4,20 +4,11 @@
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.6">
     <title>Biblioteka</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
-    <script type="text/javascript"
-            src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Rh8Sv5TRfjho9G4eD1ScoLWD-puyQ75r15gJ-aW_nPHmkQUiXtTpwkHkbneRXyREzU8gn2AvoHPMqmGsaRgu10m8L60KjjKwnztEWl1im24"
-            charset="UTF-8"></script>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -28,16 +19,7 @@
             user-select: none;
         }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -47,18 +29,11 @@
                 <a class="text-muted" href="#">Subscribe</a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Large</a>
+                <h3 style="color: #b7b7b7">Biblioteka</h3>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="#" aria-label="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
-                         viewBox="0 0 24 24" focusable="false"><title>Search</title>
-                        <circle cx="10.5" cy="10.5" r="7.5"/>
-                        <path d="M21 21l-5.2-5.2"/>
-                    </svg>
-                </a>
-                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+                <a class="btn btn-sm btn-outline-secondary" href="#">Logowanie</a>
+                <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px" href="#">Rejestracja</a>
             </div>
         </div>
     </header>
@@ -66,9 +41,9 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 text-muted" href="#">O nas</a>
-            <a class="p-2 text-muted" href="#">Spis książek</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/show">Spis książek</a>
             <a class="p-2 text-muted" href="#">Wypożycz</a>
-            <a class="p-2 text-muted" href="#">Dodaj</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
             <a class="p-2 text-muted" href="#">Culture</a>
             <a class="p-2 text-muted" href="#">Business</a>
             <a class="p-2 text-muted" href="#">Politics</a>
@@ -82,7 +57,7 @@
 
     <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">Najchętniej wypożyczane</h1>
+            <h1 class="display-4 font-italic">TOP 5</h1>
             <p class="lead my-3">Książki wybierane najczęściej przez naszych użytkowników.</p>
             <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Sprawdź...</a></p>
         </div>
@@ -96,7 +71,7 @@
                     <br>
                     <p class="card-text mb-auto">Wypełnij krótki formularz, a my postaramy się uzupełnić naszą ofertę
                         jak najszybciej!</p>
-                    <a href="/books/add" class="stretched-link">Sprawdź...</a>
+                    <a href="${pageContext.request.contextPath}/books/add" class="stretched-link">Sprawdź...</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -169,11 +144,9 @@
 
         <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="font-italic">About</h4>
-                <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus
-                    sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                <h4 class="font-italic">O nas</h4>
+                <p class="mb-0">Zwykła biblioteka ze zwykłymi książkami.</p>
             </div>
-
 
 
             <div class="p-4">
@@ -191,10 +164,8 @@
 </main><!-- /.container -->
 
 <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.
-    </p>
     <p>
-        <a href="#">Back to top</a>
+        <a href="#" style="align-content: center">Powrót na górę</a>
     </p>
 </footer>
 </body>

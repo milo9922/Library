@@ -3,9 +3,12 @@ package com.milo.Library.dao;
 import com.milo.Library.entity.Book;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.plaf.nimbus.State;
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 @Repository
 public class BookDao {
@@ -14,17 +17,16 @@ public class BookDao {
     String username = "sql7326292";
     String password = "xMj4Da1xbR";
 
-    private void insertBook(Book book) {
+    public void insertBook(Book book) {
 
         try {
             Connection conn = DriverManager.getConnection(url, username, password);
             Statement statement = conn.createStatement();
-            String query = "INSERT INTO TB_BOOK " + "VALUES (" +
-                    book.getId() + "," +
-                    "\'" + book.getTitle() + "\'" +
-                    "\'" + book.getAuthor() + "\'" +
-                    "\'" + book.getPagesNum() + "\'" +
-                    "\'" + book.getUserId() + "\'" + ")";
+            String query = "INSERT INTO TB_BOOK(title, author, pagesnum, userid) VALUES (" +
+                    "\'" + book.getTitle() + "\'," +
+                    "\'" + book.getAuthor() + "\'," +
+                    "\'" + book.getPagesNum() + "\'," +
+                    "\'" + book.getUserId() + "\')";
 
             statement.executeUpdate(query);
             conn.close();
@@ -43,14 +45,13 @@ public class BookDao {
 
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()) {
-                int id = rs.getInt("BookID");
+            while (rs.next()) {
                 String title = rs.getString("Title");
                 String author = rs.getString("Author");
                 int pagesNum = rs.getInt("PagesNum");
                 int userId = rs.getInt("UserID");
 
-                books.add(new Book(id, title, author, pagesNum, userId));
+                books.add(new Book(title, author, pagesNum, userId));
             }
 
             conn.close();
