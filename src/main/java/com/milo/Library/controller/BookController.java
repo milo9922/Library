@@ -21,11 +21,16 @@ public class BookController {
 
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public String libraryPage() {
-        return "addBook";
+        return "addBookForm";
     }
 
     @GetMapping(value = "/show")
     public String showBooks() {
         return "books";
+    }
+
+    @RequestMapping(value = "/addBook")
+    public String addBook() {
+        return "addBook";
     }
 }

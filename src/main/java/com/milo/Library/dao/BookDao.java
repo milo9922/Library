@@ -22,7 +22,7 @@ public class BookDao {
         try {
             Connection conn = DriverManager.getConnection(url, username, password);
             Statement statement = conn.createStatement();
-            String query = "INSERT INTO TB_BOOK(title, author, pagesnum, userid) VALUES (" +
+            String query = "INSERT INTO TB_BOOK(title, author, pagesnum) VALUES (" +
                     "\'" + book.getTitle() + "\'," +
                     "\'" + book.getAuthor() + "\'," +
                     "\'" + book.getPagesNum() + "\'," +
