@@ -1,8 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
+<%@ page import="com.milo.Library.dao.BookDao" %>
+<%@ page import="com.milo.Library.entity.Book" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,38 +28,31 @@
         </tr>
         </thead>
         <%
-            String url = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7326292";
-            String username = "sql7326292";
-            String password = "xMj4Da1xbR";
 
-            Connection connection;
-            Statement statement;
-            ResultSet resultSet;
             try {
-                connection = DriverManager.getConnection(url, username, password);
-                statement = connection.createStatement();
-                String sql = "SELECT * FROM TB_BOOK";
-
-                resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
+                int i = 0;
+                BookDao bookDao = new BookDao();
+                List<Book> allBooks = bookDao.getAllBooks();
+                while (i < allBooks.size()) {
         %>
 
         <tbody>
         <tr>
-            <th scope="row"><%=resultSet.getInt("BookID")%>
+            <th scope="row"><%=allBooks.get(i).getBookId()%>
             </th>
-            <th scope="row"><%=resultSet.getString("Title")%>
+            <th scope="row"><%=allBooks.get(i).getTitle()%>
             </th>
-            <th scope="row"><%=resultSet.getString("Author")%>
+            <th scope="row"><%=allBooks.get(i).getAuthor()%>
             </th>
-            <th scope="row"><%=resultSet.getInt("PagesNum")%>
+            <th scope="row"><%=allBooks.get(i).getPagesNum()%>
             </th>
-            <th scope="row"><%=resultSet.getInt("UserID")%>
+            <th scope="row"><%=allBooks.get(i).getUserId()%>
             </th>
         </tr>
         </tbody>
 
         <%
+                    i++;
                 }
             } catch (Exception e) {
                 e.printStackTrace();

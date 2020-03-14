@@ -19,14 +19,14 @@ public class BookController {
         return bookService.getAllBooks().toString();
     }
 
-    @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String libraryPage() {
         return "addBookForm";
     }
 
-    @GetMapping(value = "/show")
+    @GetMapping(value = "/showAll")
     public String showBooks() {
-        return "books";
+        return "allBooks";
     }
 
     @RequestMapping(value = "/addBook")

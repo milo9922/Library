@@ -1,6 +1,3 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.PreparedStatement" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
@@ -47,10 +44,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label>Wyjaśnij krótko dlaczego powinniśmy dodać właśnie ten tytuł</label>
-                <input type="text" class="form-control" id="explenation" placeholder="Odpowiedź">
-            </div>
 
             <br><br>
             <div class="button">
@@ -60,34 +53,8 @@
 
         </form>
 
-
     </div>
 </div>
-
-
-<%
-    String title = request.getParameter("title");
-    String author = request.getParameter("author");
-    // String pagesNum = request.getParameter("pages");
-
-    try {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7", "3Q84ulcsc7", "zumqXjeFMY");
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author) VALUES (?,?)");
-        ps.setString(1, title);
-        ps.setString(2, author);
-        int x = ps.executeUpdate();
-
-        if (x > 0) {
-            out.println("Success!");
-        } else {
-            out.println("Fail!");
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-%>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017-2019 Biblioteka</p>
