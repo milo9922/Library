@@ -32,8 +32,9 @@
                 <h3 style="color: #b7b7b7">Biblioteka</h3>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="#">Logowanie</a>
-                <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px" href="#">Rejestracja</a>
+                <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/login">Logowanie</a>
+                <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px"
+                   href="${pageContext.request.contextPath}/user/registry">Rejestracja</a>
             </div>
         </div>
     </header>
