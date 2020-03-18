@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/registry")
-    public String registry() {
+    @RequestMapping("/signup")
+    public String signup() {
         return "registerForm";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "loginForm";
+    @RequestMapping("/register")
+    public String register() {
+        return "addUser";
+    }
+
+    @RequestMapping("/register/fail")
+    public String registerFail() {
+        return "registrationFail";
     }
 }

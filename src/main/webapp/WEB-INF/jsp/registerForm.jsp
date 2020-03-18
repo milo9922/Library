@@ -21,7 +21,7 @@
 
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Zarejestruj się</h4>
-        <form action="registry" method="POST">
+        <form action="register" method="POST">
             <div class="row">
                 <div class="text-align: center col-md-6 mb-3">
                     <label>Nazwa użytkownika</label>
@@ -50,7 +50,6 @@
                 <button type="submit" class="btn btn-secondary">Zarejestruj się</button>
                 <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Powrót</a>
             </div>
-
         </form>
 
     </div>
@@ -64,9 +63,8 @@
         <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
 </footer>
+
 </body>
 </html>
 
-<%--TODO Podpiąć mechanizm dodawania użytkowników do formularza--%>
 <%--TODO Przypisywanie id książki do użytkownika--%>
-<%--TODO hashowanie hasła--%>

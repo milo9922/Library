@@ -34,14 +34,14 @@
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/login">Logowanie</a>
                 <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px"
-                   href="${pageContext.request.contextPath}/user/registry">Rejestracja</a>
+                   href="${pageContext.request.contextPath}/user/signup">Rejestracja</a>
             </div>
         </div>
     </header>
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted" href="#">O nas</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/about">O nas</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
             <a class="p-2 text-muted" href="#">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
@@ -171,3 +171,6 @@
 </footer>
 </body>
 </html>
+
+<%--TODO Dodać zakładkę z nazwą użytkownika widoczną tylko po zalogowaniu --%>
+<%--TODO Dodać funkcjonalności widoczne tylko dla adminów--%>

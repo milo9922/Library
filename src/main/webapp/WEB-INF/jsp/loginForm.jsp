@@ -51,3 +51,6 @@
 </form>
 </body>
 </html>
+
+<%--TODO Stworzyć mechanizm logowania dla istniejących użytkowników--%>
+<%--TODO Dodać zakładkę z nazwą użytkownika widoczną po zalogowaniu--%>

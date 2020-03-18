@@ -1,4 +1,4 @@
-package com.milo.Library.dao;
+package com.milo.Library.repository;
 
 import com.milo.Library.entity.Book;
 import org.springframework.stereotype.Repository;
@@ -10,20 +10,17 @@ import java.util.List;
 @Repository
 public class BookDao {
 
-    String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-    String username = "3Q84ulcsc7";
-    String password = "zumqXjeFMY";
-
     int x;
+    private String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
+    private String username = "3Q84ulcsc7";
 
-    public BookDao() throws SQLException {
+    public BookDao() {
     }
 
     public void insertBook(Book book) {
 
         try {
-            Connection conn = DriverManager.getConnection(url, username, password);
-            Statement statement = conn.createStatement();
+            Connection conn = DriverManager.getConnection(url, username, "zumqXjeFMY");
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author,PagesNum) VALUES (?,?,?)");
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
@@ -39,7 +36,7 @@ public class BookDao {
     public List<Book> getAllBooks() {
         List<Book> books = new LinkedList<>();
         try {
-            Connection conn = DriverManager.getConnection(url, username, password);
+            Connection conn = DriverManager.getConnection(url, username, "zumqXjeFMY");
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);

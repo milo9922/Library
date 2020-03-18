@@ -66,3 +66,5 @@
 </div>
 </body>
 </html>
+
+<%--TODO Dodać funkcję wypożyczania książek--%>
