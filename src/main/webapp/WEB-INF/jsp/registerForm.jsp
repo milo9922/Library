@@ -67,4 +67,3 @@
 </body>
 </html>
 
-<%--TODO Przypisywanie id książki do użytkownika--%>

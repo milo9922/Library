@@ -68,3 +68,4 @@
 </html>
 
 <%--TODO Dodać funkcję wypożyczania książek--%>
+<%--TODO Przypisywanie id użytkownika do książki--%>
