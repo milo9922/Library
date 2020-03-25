@@ -47,8 +47,9 @@ public class BookDao {
                 String author = rs.getString("Author");
                 int pagesNum = rs.getInt("PagesNum");
                 int userId = rs.getInt("UserID");
+                Date borrowDate = rs.getDate("BorrowDate");
 
-                books.add(new Book(bookId, title, author, pagesNum, userId));
+                books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate));
             }
             conn.close();
 

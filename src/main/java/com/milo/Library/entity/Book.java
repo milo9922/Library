@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,11 +16,13 @@ public class Book {
     private String author;
     private int pagesNum;
     private int userId;
+    private Date borrowDate;
 
-    public Book(String title, String author, int pagesNum) {
+    public Book(String title, String author, int pagesNum, Date borrowDate) {
         this.title = title;
         this.author = author;
         this.pagesNum = pagesNum;
+        this.borrowDate = borrowDate;
     }
 
 }

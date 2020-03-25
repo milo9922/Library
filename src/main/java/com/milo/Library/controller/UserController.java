@@ -14,11 +14,21 @@ public class UserController {
 
     @RequestMapping("/register")
     public String register() {
-        return "addUser";
+        return "register";
     }
 
     @RequestMapping("/register/fail")
     public String registerFail() {
         return "registrationFail";
+    }
+
+    @RequestMapping("/signin")
+    public String login() {
+        return "loginForm";
+    }
+
+    @RequestMapping("/showAll")
+    public String showUsers() {
+        return "allUsers";
     }
 }

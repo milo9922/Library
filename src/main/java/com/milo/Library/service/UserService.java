@@ -16,8 +16,6 @@ public class UserService {
     }
 
     public boolean checkUsernameAndPassword(String username, String password) {
-        UserDao userDao = new UserDao();
         return userDao.checkLoginAndPassword(username, password);
     }
-
 }

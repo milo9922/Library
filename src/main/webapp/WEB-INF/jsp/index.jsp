@@ -26,13 +26,14 @@
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
-                <a class="text-muted" href="#">Subscribe</a>
+                <a href="${pageContext.request.contextPath}/"><img src="png/book.png" alt="strona główna" width="72"
+                                                                   height="54"></a>
             </div>
             <div class="col-4 text-center">
                 <h3 style="color: #b7b7b7">Biblioteka</h3>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/login">Logowanie</a>
+                <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/signin">Logowanie</a>
                 <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px"
                    href="${pageContext.request.contextPath}/user/signup">Rejestracja</a>
             </div>
@@ -43,23 +44,16 @@
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/about">O nas</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>
             <a class="p-2 text-muted" href="#">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">Business</a>
-            <a class="p-2 text-muted" href="#">Politics</a>
-            <a class="p-2 text-muted" href="#">Opinion</a>
-            <a class="p-2 text-muted" href="#">Science</a>
-            <a class="p-2 text-muted" href="#">Health</a>
-            <a class="p-2 text-muted" href="#">Style</a>
-            <a class="p-2 text-muted" href="#">Travel</a>
         </nav>
     </div>
 
     <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">TOP 5</h1>
-            <p class="lead my-3">Książki wybierane najczęściej przez naszych użytkowników.</p>
+            <h1 class="display-4 font-italic">Nowości</h1>
+            <p class="lead my-3">Ostatnio dodane książki</p>
             <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Sprawdź...</a></p>
         </div>
     </div>
@@ -111,12 +105,13 @@
     <div class="row">
         <div class="col-md-8 blog-main">
             <h3 class="pb-4 mb-4 font-italic border-bottom">
-                Nowości!
+                Polecamy!
             </h3>
 
             <div class="blog-post">
                 <h2 class="blog-post-title">Przełęcz Diatłowa</h2>
-                <p class="blog-post-meta">Autor: <a href="#">Anna Matwiejewa</a></p>
+                <p class="blog-post-meta">Autor: <a href="https://pl.wikipedia.org/wiki/Anna_Matwiejewa">Anna
+                    Matwiejewa</a></p>
                 <h3>Wciągająca opowieść inspirowana tragicznymi wydarzeniami na Uralu sprzed ponad sześćdziesięciu lat,
                     które do dzisiaj rozpalają wyobraźnię łowców zagadek.</h3>
                 <br>
@@ -133,7 +128,7 @@
                     dociec prawdy.</p>
                 <br>
                 <hr>
-            </div><!-- /.blog-post -->
+            </div>
 
 
             <nav class="blog-pagination">
@@ -141,7 +136,7 @@
                 <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
             </nav>
 
-        </div><!-- /.blog-main -->
+        </div>
 
         <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">
@@ -158,11 +153,11 @@
                     <li><a href="https://www.facebook.com/">Facebook</a></li>
                 </ol>
             </div>
-        </aside><!-- /.blog-sidebar -->
+        </aside><!-- sidebar -->
 
-    </div><!-- /.row -->
+    </div><!-- row -->
 
-</main><!-- /.container -->
+</main><!-- container -->
 
 <footer class="blog-footer">
     <p>

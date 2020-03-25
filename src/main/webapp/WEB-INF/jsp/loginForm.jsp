@@ -12,7 +12,7 @@
     <style>
         .form-control {
             display: inline-block;
-            width: 30%;
+            width: 22%;
             height: calc(1.5em + .75rem + 2px);
             padding: .375rem .75rem;
             font-size: 1rem;
@@ -28,10 +28,10 @@
     </style>
 
 </head>
-<body class="text-center">
-<form class="form-signin">
+<body class="text-center" style="margin-top: 8%">
+<form class="form-signin" action="">
     <br>
-    <img src="/jpg/book.jpg" alt="" width="96" height="72">
+    <img src="/png/book.png" alt="" width="96" height="72">
     <br><br>
     <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
     <label for="username" class="sr-only">Nazwa użytkownika</label>

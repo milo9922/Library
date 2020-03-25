@@ -4,21 +4,20 @@ import com.milo.Library.entity.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Repository
 public class UserDao {
 
     int x;
+    private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
+    private final String DB_USERNAME = "3Q84ulcsc7";
 
     public void registerUser(User user) {
         try {
-            String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-            String dbUsername = "3Q84ulcsc7";
-            Connection conn = DriverManager.getConnection(url, dbUsername, "zumqXjeFMY");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_USER(Login, Password, Email) VALUES (?,?,?)");
             ps.setString(1, user.getUsername());
             ps.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
@@ -32,9 +31,7 @@ public class UserDao {
 
     public boolean checkIfUserIsNew(User user) {
         try {
-            String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-            String dbUsername = "3Q84ulcsc7";
-            Connection conn = DriverManager.getConnection(url, dbUsername, "zumqXjeFMY");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -55,9 +52,7 @@ public class UserDao {
 
     public boolean checkLoginAndPassword(String login, String password) {
         try {
-            String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-            String dbUsername = "3Q84ulcsc7";
-            Connection conn = DriverManager.getConnection(url, dbUsername, "zumqXjeFMY");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -74,6 +69,30 @@ public class UserDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> users = new LinkedList<>();
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_USER";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                int userId = rs.getInt("UserID");
+                String login = rs.getString("Login");
+                String email = rs.getString("Email");
+
+                users.add(new User(userId, login, email));
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
     public int getX() {

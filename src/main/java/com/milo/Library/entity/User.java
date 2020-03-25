@@ -17,4 +17,10 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public User(int userId, String username, String email) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+    }
 }

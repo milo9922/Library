@@ -8,7 +8,7 @@
 
     try {
         BookDao bookDao = new BookDao();
-        bookDao.insertBook(new Book(title, author, Integer.parseInt(pagesNum)));
+        bookDao.insertBook(new Book(title, author, Integer.parseInt(pagesNum), null));
         if (bookDao.getX() > 0) {
             response.sendRedirect("/books/showAll");
         } else {
