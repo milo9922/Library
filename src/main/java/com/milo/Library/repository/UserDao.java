@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public class UserDao {
 
-    int x;
     private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
     private final String DB_USERNAME = "3Q84ulcsc7";
+    int x;
 
     public void registerUser(User user) {
         try {
@@ -59,7 +59,7 @@ public class UserDao {
             while (rs.next()) {
                 String usernameDb = rs.getString("Login");
                 String passwordDb = rs.getString("Password");
-                if (login.equals(usernameDb) && BCrypt.hashpw(password, BCrypt.gensalt()).equals(passwordDb)) {
+                if (login.equals(usernameDb) && BCrypt.checkpw(password, passwordDb)) {
                     return true;
                 }
             }

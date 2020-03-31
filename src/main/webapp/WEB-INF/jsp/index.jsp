@@ -167,5 +167,6 @@
 </body>
 </html>
 
+<%--TODO Dodać flagę sprawdzająca czy użytkownik jest zalogowany--%>
 <%--TODO Dodać zakładkę z nazwą użytkownika widoczną tylko po zalogowaniu --%>
-<%--TODO Dodać funkcjonalności widoczne tylko dla adminów--%>
+<%--TODO Dodać funkcjonalności widoczne tylko dla zalogowanych adminów--%>

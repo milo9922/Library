@@ -1,6 +1,7 @@
 package com.milo.Library.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @RequestMapping("/signin")
-    public String login() {
+    public String signin() {
         return "loginForm";
     }
 
@@ -31,4 +32,10 @@ public class UserController {
     public String showUsers() {
         return "allUsers";
     }
+
+    @PostMapping("login")
+    public String login() {
+        return "login";
+    }
+
 }

@@ -16,4 +16,8 @@ public class BookService {
     public Collection<Book> getAllBooks() {
         return bookDao.getAllBooks();
     }
+
+    public void deleteBook(int id) {
+        bookDao.removeBook(id);
+    }
 }

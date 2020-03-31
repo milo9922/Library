@@ -29,17 +29,18 @@
 
 </head>
 <body class="text-center" style="margin-top: 8%">
-<form class="form-signin" action="">
+<form class="form-signin" action="login" method="post">
     <br>
     <img src="/png/book.png" alt="" width="96" height="72">
     <br><br>
     <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
     <label for="username" class="sr-only">Nazwa użytkownika</label>
     <br>
-    <input type="text" id="username" class="form-control" placeholder="Nazwa użytkownika" required autofocus>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Nazwa użytkownika" required
+           autofocus>
     <br><br>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Hasło" required>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Hasło" required>
     <div class="checkbox mb-3">
         <br>
         <label>
@@ -52,5 +53,4 @@
 </body>
 </html>
 
-<%--TODO Stworzyć mechanizm logowania dla istniejących użytkowników--%>
 <%--TODO Dodać zakładkę z nazwą użytkownika widoczną po zalogowaniu--%>

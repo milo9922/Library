@@ -10,33 +10,47 @@ import java.util.List;
 @Repository
 public class BookDao {
 
+    private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
+    private final String DB_USER = "3Q84ulcsc7";
     int x;
-    private String url = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-    private String username = "3Q84ulcsc7";
 
     public BookDao() {
     }
 
     public void insertBook(Book book) {
-
         try {
-            Connection conn = DriverManager.getConnection(url, username, "zumqXjeFMY");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author,PagesNum) VALUES (?,?,?)");
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getPagesNum());
             setX(ps.executeUpdate());
             conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
+    public int removeBook(int bookId) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM TB_BOOK WHERE BookID = ?");
+            ps.setInt(1, bookId);
+            setX(ps.executeUpdate());
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return getX();
+    }
+
     public List<Book> getAllBooks() {
         List<Book> books = new LinkedList<>();
         try {
-            Connection conn = DriverManager.getConnection(url, username, "zumqXjeFMY");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);

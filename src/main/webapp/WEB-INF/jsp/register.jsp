@@ -22,3 +22,5 @@
         e.printStackTrace();
     }
 %>
+
+<%--TODO Sprawdzić czy użytkownik jest zalogowany --%>
