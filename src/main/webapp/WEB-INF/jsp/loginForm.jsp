@@ -34,8 +34,17 @@
     <img src="/png/book.png" alt="" width="96" height="72">
     <br><br>
     <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
+    <%
+        if (session.getAttribute("loginError") != null) {
+            if ((boolean) session.getAttribute("loginError")) {
+    %>
+    <p class="justify-content-center" style="color: darkred">Wprowadzono błędne dane!</p>
+    <%
+            }
+        }
+    %>
+
     <label for="username" class="sr-only">Nazwa użytkownika</label>
-    <br>
     <input type="text" id="username" name="username" class="form-control" placeholder="Nazwa użytkownika" required
            autofocus>
     <br><br>
@@ -45,6 +54,10 @@
         <br>
         <label>
             <input type="checkbox" value="remember-me"> Zapamiętaj mnie
+        </label>
+        <br>
+        <label>
+            <p>Nie masz konta? <a href="${pageContext.request.contextPath}/user/signup">Zarejestruj się</a></p>
         </label>
     </div>
     <button class="btn btn-lg btn-primary" type="submit">Zaloguj</button>

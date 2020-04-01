@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Biblioteka</title>
@@ -19,6 +19,10 @@
             user-select: none;
         }
 
+        .title-center {
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -29,13 +33,31 @@
                 <a href="${pageContext.request.contextPath}/"><img src="png/book.png" alt="strona główna" width="72"
                                                                    height="54"></a>
             </div>
-            <div class="col-4 text-center">
+            <div class="col-4 align-content-center title-center">
                 <h3 style="color: #b7b7b7">Biblioteka</h3>
             </div>
+
+            <%
+                boolean isLog = false;
+                if (session.getAttribute("isLogged") != null) {
+                    isLog = (boolean) session.getAttribute("isLogged");
+                }
+            %>
+
             <div class="col-4 d-flex justify-content-end align-items-center">
+                <%
+                    if (isLog) {
+                %>
+                <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>!</h6>
+                <%
+                } else {
+                %>
                 <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/signin">Logowanie</a>
                 <a class="btn btn-sm btn-outline-secondary" style="margin-left: 4px"
                    href="${pageContext.request.contextPath}/user/signup">Rejestracja</a>
+                <%
+                    }
+                %>
             </div>
         </div>
     </header>
@@ -45,8 +67,14 @@
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/about">O nas</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>
+            <%
+                if (isLog) {
+            %>
             <a class="p-2 text-muted" href="#">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
+            <%
+                }
+            %>
         </nav>
     </div>
 

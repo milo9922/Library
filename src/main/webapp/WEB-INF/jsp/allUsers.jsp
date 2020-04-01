@@ -20,8 +20,7 @@
     <table id="books" class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Login</th>
+            <th scope="col">Użytkownik</th>
             <th scope="col">Email</th>
         </tr>
         </thead>
@@ -36,8 +35,6 @@
 
         <tbody>
         <tr>
-            <th scope="row"><%=allBooks.get(i).getUserId()%>
-            </th>
             <th scope="row"><%=allBooks.get(i).getUsername()%>
             </th>
             <th scope="row"><%=allBooks.get(i).getEmail()%>

@@ -20,7 +20,6 @@
     <br><br>
 
     <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Zarejestruj się</h4>
         <form action="register" method="POST">
             <div class="row">
                 <div class="text-align: center col-md-6 mb-3">

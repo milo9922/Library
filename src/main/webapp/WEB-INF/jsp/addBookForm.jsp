@@ -1,5 +1,15 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%
+    if (session.getAttribute("isLogged") != null) {
+        if (!(boolean) session.getAttribute("isLogged")) {
+            response.sendRedirect("http://localhost:8080/user/signin");
+        }
+    } else {
+        response.sendRedirect("http://localhost:8080/user/signin");
+    }
+%>
+
 
 <!doctype html>
 <html lang="en">
