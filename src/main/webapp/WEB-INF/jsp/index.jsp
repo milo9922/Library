@@ -48,7 +48,11 @@
                 <%
                     if (isLog) {
                 %>
-                <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>!</h6>
+                <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>! <br><a
+                        style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/logout">Wyloguj
+                    się</a></h6>
+                <br>
+
                 <%
                 } else {
                 %>

@@ -33,9 +33,14 @@ public class UserController {
         return "allUsers";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @RequestMapping("/logout")
+    public String logout() {
+        return "logout";
     }
 
 }
