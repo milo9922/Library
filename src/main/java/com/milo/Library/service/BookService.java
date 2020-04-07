@@ -13,11 +13,7 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-    public Collection<Book> getAllBooks() {
-        return bookDao.getAllBooks();
-    }
-
-    public void deleteBook(int id) {
-        bookDao.removeBook(id);
+    public Collection<Book> getAllBooks(boolean onlyBorrowed) {
+        return bookDao.getAllBooks(onlyBorrowed);
     }
 }

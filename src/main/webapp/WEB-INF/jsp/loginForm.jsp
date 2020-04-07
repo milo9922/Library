@@ -66,4 +66,3 @@
 </body>
 </html>
 
-<%--TODO Dodać zakładkę z nazwą użytkownika widoczną po zalogowaniu--%>

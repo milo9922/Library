@@ -2,7 +2,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.milo.Library.entity.Book" %>
 <%@ page import="com.milo.Library.repository.BookDao" %>
-<%@ page import="com.milo.Library.repository.UserDao" %>
 <%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
@@ -17,22 +16,22 @@
 <body class="py-4">
 
 <div class="container">
-    <h2 style="text-align: center">Spis książek</h2>
+    <h2 style="text-align: center">Dostępne do wypożyczenia</h2>
     <br><br>
     <table id="books" class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Tytuł</th>
+            <th scope="col">Tytul</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
-            <th scope="col">Wypożyczona przez</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <%
             try {
                 int i = 0;
                 BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks(false);
+                List<Book> allBooks = bookDao.getAllBooks(true);
                 while (i < allBooks.size()) {
         %>
 
@@ -44,7 +43,8 @@
             </th>
             <th scope="row"><%=allBooks.get(i).getPagesNum()%>
             </th>
-            <th scope="row"><%=new UserDao().getUserNameById(allBooks.get(i).getUserId())%>
+            <th scope="row"><a
+                    href="${pageContext.request.contextPath}/books/BorrowBook?id=<%=allBooks.get(i).getBookId()%>">Wypożycz</a>
             </th>
         </tr>
         </tbody>

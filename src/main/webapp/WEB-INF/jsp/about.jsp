@@ -37,8 +37,8 @@
             Korzystając z naszego serwisu nie musisz wychodzić z domu w celu znalezienia interesującej Cię książki,
             wystarczy założyć konto by cieszyć się bogatym, ciągle uzupełnianym o nowe tytuły, zbiorem.
             Wystarczy jedno kliknięcie, aby wypożyczyć interesującą Cię pozycję, a następnie odebrać ją w czynnej przez
-            całą dobę bibliotece. Czas na przeczytanie danej książki wynosi maksymalnie 2 miesiące od momentu
-            wypożyczenia online.
+            całą dobę bibliotece. Dodatkowo możliwe jest dodawanie przez użytkowników nowych książek, co z pewnością
+            ułatwi naukę, pracę niejednej osobie.
             Zachęcamy do zapoznania się z aktualną listą!</p>
         <br>
         <a href="http://localhost:8080/books/showAll">Lista książek</a>

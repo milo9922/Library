@@ -24,11 +24,10 @@
             <th scope="col">Email</th>
         </tr>
         </thead>
-        <%
 
+        <%
             try {
                 int i = 0;
-
                 List<User> allBooks = new UserDao().getAllUsers();
                 while (i < allBooks.size()) {
         %>

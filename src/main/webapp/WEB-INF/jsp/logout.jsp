@@ -1,5 +1,11 @@
+<%@ page import="com.milo.Library.service.UserService" %>
+
 <%
-    session.setAttribute("isLogged", false);
-    session.setAttribute("user", "");
-    response.sendRedirect("/");
+    if (new UserService().checkIfUserIsLogged(session)) {
+        session.setAttribute("isLogged", false);
+        session.setAttribute("user", "");
+        response.sendRedirect("/");
+    } else {
+        response.sendRedirect("/");
+    }
 %>

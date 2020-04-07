@@ -1,11 +1,8 @@
+<%@ page import="com.milo.Library.service.UserService" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    if (session.getAttribute("isLogged") != null) {
-        if (!(boolean) session.getAttribute("isLogged")) {
-            response.sendRedirect("http://localhost:8080/user/signin");
-        }
-    } else {
+    if (!new UserService().checkIfUserIsLogged(session)) {
         response.sendRedirect("http://localhost:8080/user/signin");
     }
 %>
@@ -15,7 +12,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>Dodaj</title>
 
     <!-- Bootstrap core CSS -->
@@ -33,7 +29,7 @@
 
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Zaproponuj nową książkę</h4>
-        <form action="addBook" method="POST">
+        <form action="AddBook" method="POST">
             <div class="row">
                 <div class="text-align: center col-md-6 mb-3">
                     <label>Tytuł</label>
@@ -60,9 +56,7 @@
                 <button type="submit" class="btn btn-secondary">Wyślij</button>
                 <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Powrót</a>
             </div>
-
         </form>
-
     </div>
 </div>
 

@@ -13,5 +13,6 @@ CREATE TABLE IF NOT EXISTS TB_BOOK
     Author     varchar(30) NOT NULL,
     PagesNum   int,
     UserID     int,
-    BorrowTime DATE
+    BorrowDate DATE,
+    ReturnDate DATE
 );

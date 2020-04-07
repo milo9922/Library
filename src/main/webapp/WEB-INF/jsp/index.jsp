@@ -1,3 +1,4 @@
+<%@ page import="com.milo.Library.service.UserService" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
@@ -37,22 +38,16 @@
                 <h3 style="color: #b7b7b7">Biblioteka</h3>
             </div>
 
-            <%
-                boolean isLog = false;
-                if (session.getAttribute("isLogged") != null) {
-                    isLog = (boolean) session.getAttribute("isLogged");
-                }
-            %>
 
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <%
-                    if (isLog) {
+                    UserService userService = new UserService();
+                    if (userService.checkIfUserIsLogged(session)) {
                 %>
                 <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>! <br><a
                         style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/logout">Wyloguj
                     się</a></h6>
                 <br>
-
                 <%
                 } else {
                 %>
@@ -72,9 +67,10 @@
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>
             <%
-                if (isLog) {
+                if (userService.checkIfUserIsLogged(session)) {
             %>
-            <a class="p-2 text-muted" href="#">Wypożycz</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowList">Wypożycz</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowed">Wypożyczone</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
             <%
                 }
@@ -113,12 +109,11 @@
         <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success">Design</strong>
-                    <h3 class="mb-0">Post title</h3>
+                    <strong class="d-inline-block mb-2 text-success">Ostatnio dodano</strong>
+                    <h3 class="mb-0">Tytuł</h3>
                     <div class="mb-1 text-muted">Nov 11</div>
-                    <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                        additional content.</p>
-                    <a href="#" class="stretched-link">Continue reading</a>
+                    <p class="mb-auto">Krótki opis</p>
+                    <a href="#" class="stretched-link">Redirect do listy książek</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -171,11 +166,6 @@
         </div>
 
         <aside class="col-md-4 blog-sidebar">
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="font-italic">O nas</h4>
-                <p class="mb-0">Zwykła biblioteka ze zwykłymi książkami.</p>
-            </div>
-
 
             <div class="p-4">
                 <h4 class="font-italic">Znajdziesz nas na</h4>
@@ -199,6 +189,4 @@
 </body>
 </html>
 
-<%--TODO Dodać flagę sprawdzająca czy użytkownik jest zalogowany--%>
-<%--TODO Dodać zakładkę z nazwą użytkownika widoczną tylko po zalogowaniu --%>
 <%--TODO Dodać funkcjonalności widoczne tylko dla zalogowanych adminów--%>

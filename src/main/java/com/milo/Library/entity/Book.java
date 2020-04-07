@@ -17,12 +17,15 @@ public class Book {
     private int pagesNum;
     private int userId;
     private Date borrowDate;
+    private Date returnDate;
 
-    public Book(String title, String author, int pagesNum, Date borrowDate) {
+    public Book(String title, String author, int pagesNum, Date borrowDate, Date returnDate) {
         this.title = title;
         this.author = author;
         this.pagesNum = pagesNum;
         this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
     }
 
+    // TODO: Dodać treść książki na bazę danych i udostępnić ją na stronie po wypożyczeniu
 }

@@ -39,6 +39,7 @@ public class UserDao {
                 String usernameDb = rs.getString("Login");
                 String emailDb = rs.getString("Email");
                 if (user.getUsername().equals(usernameDb) || user.getEmail().equals(emailDb)) {
+                    conn.close();
                     return false;
                 }
             }
@@ -60,6 +61,7 @@ public class UserDao {
                 String usernameDb = rs.getString("Login");
                 String passwordDb = rs.getString("Password");
                 if (login.equals(usernameDb) && BCrypt.checkpw(password, passwordDb)) {
+                    conn.close();
                     return true;
                 }
             }
@@ -93,6 +95,54 @@ public class UserDao {
         }
 
         return users;
+    }
+
+    public int getUserIdByName(String username) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_USER";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                int userId = rs.getInt("UserID");
+                String login = rs.getString("Login");
+                if (login.equals(username)) {
+                    conn.close();
+                    return userId;
+                }
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public String getUserNameById(int id) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_USER";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                int userId = rs.getInt("UserID");
+                String login = rs.getString("Login");
+                if (id == userId) {
+                    conn.close();
+                    return login;
+                }
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public int getX() {

@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.milo.Library.entity.Book" %>
 <%@ page import="com.milo.Library.repository.BookDao" %>
@@ -17,15 +16,15 @@
 <body class="py-4">
 
 <div class="container">
-    <h2 style="text-align: center">Spis książek</h2>
+    <h2 style="text-align: center">Aktualnie wypożyczone</h2>
     <br><br>
-    <table id="books" class="table table-striped">
+    <table id="books" class="table table-striped" style="background: #abdde5">
         <thead>
         <tr>
-            <th scope="col">Tytuł</th>
+            <th scope="col">Tytul</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
-            <th scope="col">Wypożyczona przez</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <%
@@ -33,23 +32,29 @@
                 int i = 0;
                 BookDao bookDao = new BookDao();
                 List<Book> allBooks = bookDao.getAllBooks(false);
+                Book currentBook;
+                int currentUserId = new UserDao().getUserIdByName((String) session.getAttribute("user"));
                 while (i < allBooks.size()) {
+                    currentBook = allBooks.get(i);
+                    if (currentBook.getUserId() == currentUserId) {
         %>
 
         <tbody>
         <tr>
-            <th scope="row"><%=allBooks.get(i).getTitle()%>
+            <th scope="row"><%=currentBook.getTitle()%>
             </th>
-            <th scope="row"><%=allBooks.get(i).getAuthor()%>
+            <th scope="row"><%=currentBook.getAuthor()%>
             </th>
-            <th scope="row"><%=allBooks.get(i).getPagesNum()%>
+            <th scope="row"><%=currentBook.getPagesNum()%>
             </th>
-            <th scope="row"><%=new UserDao().getUserNameById(allBooks.get(i).getUserId())%>
+            <th scope="row"><a
+                    href="${pageContext.request.contextPath}/books/returnBook?id=<%=currentBook.getBookId()%>">Zwróć</a>
             </th>
         </tr>
         </tbody>
 
         <%
+                    }
                     i++;
                 }
             } catch (Exception e) {
