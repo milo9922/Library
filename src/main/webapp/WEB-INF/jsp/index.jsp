@@ -45,7 +45,7 @@
                     if (userService.checkIfUserIsLogged(session)) {
                 %>
                 <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>! <br><a
-                        style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/logout">Wyloguj
+                        style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/Logout">Wyloguj
                     się</a></h6>
                 <br>
                 <%

@@ -13,9 +13,9 @@ public class UserController {
         return "registerForm";
     }
 
-    @RequestMapping("/register")
+    @RequestMapping("/Register")
     public String register() {
-        return "register";
+        return "Register";
     }
 
     @RequestMapping("/register/fail")
@@ -38,9 +38,9 @@ public class UserController {
         return "Login";
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/Logout")
     public String logout() {
-        return "logout";
+        return "Logout";
     }
 
 }

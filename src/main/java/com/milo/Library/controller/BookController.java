@@ -49,8 +49,8 @@ public class BookController {
         return "borrowedBooksList";
     }
 
-    @RequestMapping(value = "/returnBook{id}")
+    @RequestMapping(value = "/ReturnBook{id}")
     public String returnBook(@RequestParam int id) {
-        return "returnBook";
+        return "ReturnBook";
     }
 }

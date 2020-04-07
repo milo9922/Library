@@ -48,7 +48,7 @@
             <th scope="row"><%=currentBook.getPagesNum()%>
             </th>
             <th scope="row"><a
-                    href="${pageContext.request.contextPath}/books/returnBook?id=<%=currentBook.getBookId()%>">Zwróć</a>
+                    href="${pageContext.request.contextPath}/books/ReturnBook?id=<%=currentBook.getBookId()%>">Zwróć</a>
             </th>
         </tr>
         </tbody>

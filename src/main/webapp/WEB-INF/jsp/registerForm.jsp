@@ -20,7 +20,7 @@
     <br><br>
 
     <div class="col-md-8 order-md-1">
-        <form action="register" method="POST">
+        <form action="Register" method="POST">
             <div class="row">
                 <div class="text-align: center col-md-6 mb-3">
                     <label>Nazwa użytkownika</label>
