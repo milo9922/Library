@@ -2,6 +2,7 @@ package com.milo.Library;
 
 import com.milo.Library.servlet.AddBook;
 import com.milo.Library.servlet.BorrowBook;
+import com.milo.Library.servlet.Login;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -32,4 +33,11 @@ public class LibraryApplication {
         return bean;
     }
 
+    //login servlet registration
+    @Bean
+    public ServletRegistrationBean loginServletRegistrationBean() {
+        ServletRegistrationBean bean = new ServletRegistrationBean(
+                new Login(), "/user/Login");
+        return bean;
+    }
 }
