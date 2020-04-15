@@ -1,4 +1,11 @@
+<%@ page import="com.milo.Library.service.UserService" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    if (new UserService().checkIfUserIsLogged(session)) {
+        response.sendRedirect("/");
+    }
+%>
+
 
 <!doctype html>
 <html lang="en">

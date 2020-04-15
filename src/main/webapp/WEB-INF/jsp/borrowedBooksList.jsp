@@ -2,7 +2,14 @@
 <%@ page import="com.milo.Library.entity.Book" %>
 <%@ page import="com.milo.Library.repository.BookDao" %>
 <%@ page import="com.milo.Library.repository.UserDao" %>
+<%@ page import="com.milo.Library.service.UserService" %>
 <%@ page import="java.util.List" %>
+<%
+    if (!new UserService().checkIfUserIsLogged(session)) {
+        response.sendRedirect("http://localhost:8080/user/signin");
+    }
+%>
+
 <!doctype html>
 <html lang="en">
 <head>

@@ -15,19 +15,32 @@ public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserDao userDao = new UserDao();
         String uname = request.getParameter("username");
         HttpSession session = request.getSession();
 
-        if (userDao.checkLoginAndPassword(uname, request.getParameter("password"))) {
-            session.setAttribute("loginError", false);
-            session.setAttribute("isLogged", true);
-            session.setAttribute("user", uname);
+        if (isUserLogged(request)) {
             response.sendRedirect("/");
         } else {
-            session.setAttribute("loginError", true);
-            session.setAttribute("isLogged", false);
-            response.sendRedirect("/user/signin");
+            if (new UserDao().checkLoginAndPassword(uname, request.getParameter("password"))) {
+                session.setAttribute("loginError", false);
+                session.setAttribute("isLogged", true);
+                session.setAttribute("user", uname);
+                response.sendRedirect("/");
+            } else {
+                session.setAttribute("loginError", true);
+                session.setAttribute("isLogged", false);
+                response.sendRedirect("/user/signin");
+            }
+        }
+    }
+
+    private static boolean isUserLogged(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("isLogged") != null) {
+            return (boolean) session.getAttribute("isLogged");
+        } else {
+            return false;
         }
     }
 

@@ -19,11 +19,12 @@ public class BookDao {
     public void insertBook(Book book) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author,PagesNum,AddDate,ContentPdf) VALUES (?,?,?,CURRENT_DATE,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author, PagesNum, UserID, AddDate, ContentPdf) VALUES (?,?,?,?,CURRENT_DATE,?)");
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getPagesNum());
-            ps.setBlob(4, book.getContentPdf());
+            ps.setInt(4, book.getUserId());
+            ps.setBlob(5, book.getContentPdf());
             setX(ps.executeUpdate());
             conn.close();
 
@@ -61,16 +62,15 @@ public class BookDao {
                 String author = rs.getString("Author");
                 int pagesNum = rs.getInt("PagesNum");
                 int userId = rs.getInt("UserID");
-                Date borrowDate = rs.getDate("BorrowDate");
-                Date returnDate = rs.getDate("ReturnDate");
+                Date addDate = rs.getDate("AddDate");
                 Blob contentPdf = rs.getBlob("ContentPdf");
                 if (onlyBorrowed) {
                     if (userId == 0) {
-                        books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate, contentPdf));
+                        books.add(new Book(bookId, title, author, pagesNum, userId, addDate, contentPdf));
                     }
 
                 } else {
-                    books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate, contentPdf));
+                    books.add(new Book(bookId, title, author, pagesNum, userId, addDate, contentPdf));
                 }
 
             }

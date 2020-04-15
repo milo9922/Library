@@ -25,7 +25,7 @@
             <th scope="col">Tytuł</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
-            <th scope="col">Wypożyczona przez</th>
+            <th scope="col">Dodana przez</th>
         </tr>
         </thead>
         <%

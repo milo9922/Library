@@ -17,16 +17,15 @@ public class Book {
     private String author;
     private int pagesNum;
     private int userId;
-    private Date borrowDate;
-    private Date returnDate;
+    private Date addDate;
     private Blob contentPdf;
 
-    public Book(String title, String author, int pagesNum, Date borrowDate, Date returnDate, Blob contentPdf) {
+    // new correct constructor
+    public Book(String title, String author, int pagesNum, int userId, Blob contentPdf) {
         this.title = title;
         this.author = author;
         this.pagesNum = pagesNum;
-        this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
+        this.userId = userId;
         this.contentPdf = contentPdf;
     }
 
