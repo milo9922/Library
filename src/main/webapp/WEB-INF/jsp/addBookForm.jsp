@@ -15,8 +15,8 @@
     <title>Dodaj</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body class="bg-light">
 
@@ -25,10 +25,9 @@
         <h2>Zaproponuj nową książkę</h2>
         <p class="lead">Wypełnij krótki formularz aby zaproponować dodanie nowej książki do biblioteki</p>
     </div>
-    <br><br><br>
+    <br><br>
 
     <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Zaproponuj nową książkę</h4>
         <form action="AddBook" method="POST">
             <div class="row">
                 <div class="text-align: center col-md-6 mb-3">
@@ -49,6 +48,13 @@
                         Nieprawidłowe dane!
                     </div>
                 </div>
+                <div class="input-group mb-3">
+                    <div class="custom-file" style="margin-left: 15px; margin-top: 10px">
+                        <input type="file" class="custom-file-input" id="customFileLang" name="contentPdf" required>
+                        <label class="custom-file-label" for="customFileLang" id="fileLabel">Wybierz plik</label>
+                    </div>
+                </div>
+
             </div>
 
             <br><br>
@@ -68,5 +74,7 @@
         <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
 </footer>
+
+
 </body>
 </html>

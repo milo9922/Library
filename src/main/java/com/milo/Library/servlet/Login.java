@@ -14,23 +14,12 @@ public class Login extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        login(request, response);
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        login(request, response);
-    }
-
     private static void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserDao userDao = new UserDao();
         String uname = request.getParameter("username");
-        String pass = request.getParameter("password");
         HttpSession session = request.getSession();
 
-        if (userDao.checkLoginAndPassword(uname, pass)) {
+        if (userDao.checkLoginAndPassword(uname, request.getParameter("password"))) {
             session.setAttribute("loginError", false);
             session.setAttribute("isLogged", true);
             session.setAttribute("user", uname);
@@ -40,5 +29,15 @@ public class Login extends HttpServlet {
             session.setAttribute("isLogged", false);
             response.sendRedirect("/user/signin");
         }
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        login(request, response);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        login(request, response);
     }
 }

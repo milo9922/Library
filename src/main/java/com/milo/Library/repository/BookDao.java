@@ -19,10 +19,11 @@ public class BookDao {
     public void insertBook(Book book) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author,PagesNum,AddDate) VALUES (?,?,?,CURRENT_DATE)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author,PagesNum,AddDate,ContentPdf) VALUES (?,?,?,CURRENT_DATE,?)");
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getPagesNum());
+            ps.setBlob(4, book.getContentPdf());
             setX(ps.executeUpdate());
             conn.close();
 
@@ -32,7 +33,7 @@ public class BookDao {
 
     }
 
-    // TODO Implement removeBook function only for admin
+    // TODO Zaimplementować usuwanie książek dostępne tylko dla adminów i dodającego daną książkę
     public int removeBook(int bookId) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
@@ -62,13 +63,14 @@ public class BookDao {
                 int userId = rs.getInt("UserID");
                 Date borrowDate = rs.getDate("BorrowDate");
                 Date returnDate = rs.getDate("ReturnDate");
+                Blob contentPdf = rs.getBlob("ContentPdf");
                 if (onlyBorrowed) {
                     if (userId == 0) {
-                        books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate));
+                        books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate, contentPdf));
                     }
 
                 } else {
-                    books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate));
+                    books.add(new Book(bookId, title, author, pagesNum, userId, borrowDate, returnDate, contentPdf));
                 }
 
             }
