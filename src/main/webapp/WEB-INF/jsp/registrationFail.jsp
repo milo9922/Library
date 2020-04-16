@@ -3,7 +3,7 @@
 <html lang="en" class="h-100">
 <head>
     <meta charset="utf-8">
-    <title>Rejestracja</title>
+    <title>Błąd!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
