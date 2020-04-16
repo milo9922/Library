@@ -13,7 +13,7 @@ public class LibraryController {
         return "index";
     }
 
-    @RequestMapping("/about")
+    @GetMapping("/about")
     public String about() {
         return "about";
     }

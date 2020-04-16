@@ -1,6 +1,7 @@
 package com.milo.Library.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,27 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/signup")
+    @GetMapping("/signup")
     public String signup() {
         return "registerForm";
     }
 
-    @RequestMapping("/Register")
+    @PostMapping("/Register")
     public String register() {
         return "Register";
     }
 
-    @RequestMapping("/register/fail")
+    @GetMapping("/register/fail")
     public String registerFail() {
         return "registrationFail";
     }
 
-    @RequestMapping("/signin")
+    @GetMapping("/signin")
     public String signin() {
         return "loginForm";
     }
 
-    @RequestMapping("/showAll")
+    @GetMapping("/showAll")
     public String showUsers() {
         return "allUsers";
     }
@@ -38,7 +39,7 @@ public class UserController {
         return "Login";
     }
 
-    @RequestMapping("/Logout")
+    @PostMapping("/Logout")
     public String logout() {
         return "Logout";
     }

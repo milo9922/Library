@@ -36,7 +36,7 @@
 
 </head>
 <body class="text-center" style="margin-top: 8%">
-<form class="form-signin" action="Login" method="post">
+<form class="form-signin" action="Login" method="POST">
     <br>
     <img src="/png/book.png" alt="" width="96" height="72">
     <br><br>
