@@ -1,7 +1,7 @@
 package com.milo.Library.repository;
 
 import com.milo.Library.entity.Book;
-import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -9,16 +9,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Repository
-@NoArgsConstructor
 public class BookDao {
 
-    private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-    private final String DB_USER = "3Q84ulcsc7";
     int x;
 
     public void insertBook(Book book) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            Connection conn = new DbConnection().getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author, PagesNum, UserID, AddDate, ContentPdf) VALUES (?,?,?,?,CURRENT_DATE,?)");
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
@@ -37,7 +34,7 @@ public class BookDao {
     // TODO Zaimplementować usuwanie książek dostępne tylko dla adminów i dodającego daną książkę
     public int removeBook(int bookId) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            Connection conn = new DbConnection().getConnection();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM TB_BOOK WHERE BookID = ?");
             ps.setInt(1, bookId);
             setX(ps.executeUpdate());
@@ -51,7 +48,7 @@ public class BookDao {
     public List<Book> getAllBooks(boolean onlyBorrowed) {
         List<Book> books = new LinkedList<>();
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            Connection conn = new DbConnection().getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);
@@ -85,7 +82,7 @@ public class BookDao {
 
     public void borrowBook(int bookId, int userId) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            Connection conn = new DbConnection().getConnection();
             PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET UserID = ?, BorrowDate = CURRENT_DATE, ReturnDate = null WHERE BookID = ?");
             ps.setInt(1, userId);
             ps.setInt(2, bookId);
@@ -99,7 +96,7 @@ public class BookDao {
 
     public void returnBook(int bookId) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+            Connection conn = new DbConnection().getConnection();
             PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET UserID = null, ReturnDate = CURRENT_DATE WHERE BookID = ?");
             ps.setInt(1, bookId);
             setX(ps.executeUpdate());
@@ -108,6 +105,16 @@ public class BookDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @SneakyThrows
+    public Blob getBookContent(int bookId) {
+        Connection conn = new DbConnection().getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT ContentPdf FROM TB_BOOK WHERE BookID = ? AND ContentPdf IS NOT NULL");
+        ps.setInt(1, bookId);
+        ResultSet rs = ps.executeQuery();
+
+        return rs.getBlob("ContentPdf");
     }
 
     public int getX() {

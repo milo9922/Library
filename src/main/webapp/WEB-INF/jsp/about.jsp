@@ -8,26 +8,8 @@
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
 </head>
 <body class="d-flex flex-column h-100">
-<!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
         <h1 class="mt-5">O nas</h1>
@@ -41,13 +23,14 @@
             ułatwi naukę, pracę niejednej osobie.
             Zachęcamy do zapoznania się z aktualną listą!</p>
         <br>
-        <a href="http://localhost:8080/books/showAll">Lista książek</a>
+        <a class="btn btn-dark" href="http://localhost:8080/books/showAll">Lista książek</a>
     </div>
 </main>
 
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <span class="text-muted"><a href="http://localhost:8080/">Powrót do strony głównej</a></span>
+        <span class="text-muted"><a class="btn btn-dark"
+                                    href="http://localhost:8080/">Powrót do strony głównej</a></span>
     </div>
 </footer>
 </body>

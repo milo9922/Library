@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Dodaj</title>
+    <title>Dodaj książkę</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -50,8 +50,8 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="custom-file" style="margin-left: 15px; margin-top: 10px">
-                        <input type="file" class="custom-file-input" id="customFileLang" name="contentPdf" required>
-                        <label class="custom-file-label" for="customFileLang" id="fileLabel">Wybierz plik</label>
+                        <input type="file" class="custom-file-input" id="contentPdf" name="contentPdf" required>
+                        <label class="custom-file-label" for="contentPdf" id="fileLabel">Wybierz plik</label>
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
 </div>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017-2019 Biblioteka</p>
+    <p class="mb-1">&copy; 2018-2020 Biblioteka</p>
     <ul class="list-inline">
         <li class="list-inline-item"><a href="#">Privacy</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>

@@ -28,7 +28,7 @@
     <table id="books" class="table table-striped" style="background: #abdde5">
         <thead>
         <tr>
-            <th scope="col">Tytul</th>
+            <th scope="col">Tytuł</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
             <th scope="col"></th>
@@ -55,7 +55,12 @@
             <th scope="row"><%=currentBook.getPagesNum()%>
             </th>
             <th scope="row"><a
+                    class="btn btn-sm btn-light"
                     href="${pageContext.request.contextPath}/books/ReturnBook?id=<%=currentBook.getBookId()%>">Zwróć</a>
+            </th>
+            <th scope="row"><a
+                    class="btn btn-sm btn-light"
+                    href="${pageContext.request.contextPath}/books/ReturnBook?id=<%=currentBook.getBookId()%>">Czytaj</a>
             </th>
         </tr>
         </tbody>

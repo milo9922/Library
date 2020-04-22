@@ -39,7 +39,6 @@
         <a href="http://localhost:8080/user/login">Logowanie</a>
 
     </div>
-
 </main>
 
 </body>

@@ -12,16 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/user/", name = "Register")
 public class Register extends HttpServlet {
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        register(request, response);
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        register(request, response);
-    }
-
     private static void register(HttpServletRequest request, HttpServletResponse response) {
         try {
             if (!new UserService().checkIfUserIsLogged(request.getSession())) {
@@ -43,5 +33,15 @@ public class Register extends HttpServlet {
         (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        register(request, response);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+        register(request, response);
     }
 }
