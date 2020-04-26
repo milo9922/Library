@@ -12,17 +12,18 @@ public class BookDao {
 
     int x;
 
-    public void insertBook(String title, String author, int pages) {
+    public void insertBook(String title, String author, int pages, int userId) {
         Connection conn = null;
         String message = null;
 
         try {
             conn = new DbConnection().getConnection();
-            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum) VALUES (?,?,?)";
+            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum, UserID) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, title);
             statement.setString(2, author);
             statement.setInt(3, pages);
+            statement.setInt(4, userId);
 
             int row = statement.executeUpdate();
             if (row > 0) {

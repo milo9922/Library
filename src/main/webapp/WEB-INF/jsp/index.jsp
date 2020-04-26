@@ -1,3 +1,4 @@
+<%@ page import="com.milo.Library.repository.UserDao" %>
 <%@ page import="com.milo.Library.service.UserService" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
@@ -42,13 +43,24 @@
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <%
                     UserService userService = new UserService();
+                    UserDao userDao = new UserDao();
                     if (userService.checkIfUserIsLogged(session)) {
+                        if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
+                %>
+                <h6 class="font-italic">Witaj, [ADMIN]<%=session.getAttribute("user")%>! <br><a
+                        style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/Logout">Wyloguj
+                    się</a></h6>
+                <br>
+
+                <%
+                } else {
                 %>
                 <h6 class="font-italic">Witaj, <%=session.getAttribute("user")%>! <br><a
                         style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/Logout">Wyloguj
                     się</a></h6>
                 <br>
                 <%
+                    }
                 } else {
                 %>
                 <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/signin">Logowanie</a>
@@ -65,14 +77,18 @@
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/about">O nas</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
-            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>
             <%
                 if (userService.checkIfUserIsLogged(session)) {
             %>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowList">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowed">Wypożyczone</a>
-            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
             <%
+                if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
+            %>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>
+            <%
+                    }
                 }
             %>
         </nav>

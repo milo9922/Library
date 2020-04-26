@@ -4,20 +4,22 @@ import com.milo.Library.entity.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
 @Repository
 public class UserDao {
 
-    private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-    private final String DB_USERNAME = "3Q84ulcsc7";
     int x;
+    DbConnection dbConn = new DbConnection();
 
     public void registerUser(User user) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_USER(Login, Password, Email) VALUES (?,?,?)");
             ps.setString(1, user.getUsername());
             ps.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
@@ -31,7 +33,7 @@ public class UserDao {
 
     public boolean checkIfUserIsNew(User user) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -53,7 +55,7 @@ public class UserDao {
 
     public boolean checkLoginAndPassword(String login, String password) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -76,7 +78,7 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -99,7 +101,7 @@ public class UserDao {
 
     public int getUserIdByName(String username) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -121,17 +123,17 @@ public class UserDao {
         return 0;
     }
 
-    public String getUserNameById(int id) {
+    public String getUserNameById(int userId) {
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, "zumqXjeFMY");
+            Connection conn = dbConn.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
-                int userId = rs.getInt("UserID");
+                int userIdFromDb = rs.getInt("UserID");
                 String login = rs.getString("Login");
-                if (id == userId) {
+                if (userId == userIdFromDb) {
                     conn.close();
                     return login;
                 }
@@ -143,6 +145,30 @@ public class UserDao {
         }
 
         return null;
+    }
+
+    public boolean isUserAdmin(int userId) {
+        try {
+            Connection conn = dbConn.getConnection();
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_USER";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                int userIdFromDb = rs.getInt("UserID");
+                boolean isAdmin = rs.getBoolean("IsAdmin");
+                if (userId == userIdFromDb) {
+                    conn.close();
+                    return isAdmin;
+                }
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public int getX() {

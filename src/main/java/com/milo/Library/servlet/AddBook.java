@@ -1,6 +1,7 @@
 package com.milo.Library.servlet;
 
 import com.milo.Library.repository.BookDao;
+import com.milo.Library.repository.UserDao;
 import lombok.SneakyThrows;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -21,7 +22,8 @@ public class AddBook extends HttpServlet {
         new BookDao().insertBook(
                 request.getParameter("title"),
                 request.getParameter("author"),
-                Integer.parseInt(request.getParameter("pages")));
+                Integer.parseInt(request.getParameter("pages")),
+                new UserDao().getUserIdByName((String) request.getSession().getAttribute("user")));
 
         response.sendRedirect("/books/showAll");
     }

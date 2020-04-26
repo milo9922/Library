@@ -26,7 +26,16 @@
             <th scope="col">Tytuł</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
+            <%
+                UserDao userDao = new UserDao();
+                boolean isCurrentUserAdmin = userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")));
+
+                if (isCurrentUserAdmin) {
+            %>
             <th scope="col">Dodana przez</th>
+            <%
+                }
+            %>
         </tr>
         </thead>
         <%
@@ -45,11 +54,16 @@
             </th>
             <th scope="row"><%=allBooks.get(i).getPagesNum()%>
             </th>
-            <th scope="row"><%=new UserDao().getUserNameById(allBooks.get(i).getUserId())%>
+            <%
+                if (isCurrentUserAdmin) {
+            %>
+            <th scope="row"><%=userDao.getUserNameById(allBooks.get(i).getUserId())%>
             </th>
+            <%
+                }
+            %>
         </tr>
         </tbody>
-
         <%
                     i++;
                 }
