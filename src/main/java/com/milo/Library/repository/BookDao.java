@@ -1,7 +1,6 @@
 package com.milo.Library.repository;
 
 import com.milo.Library.entity.Book;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -13,20 +12,35 @@ public class BookDao {
 
     int x;
 
-    public void insertBook(Book book) {
-        try {
-            Connection conn = new DbConnection().getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_BOOK(Title, Author, PagesNum, UserID, AddDate, ContentPdf) VALUES (?,?,?,?,CURRENT_DATE,?)");
-            ps.setString(1, book.getTitle());
-            ps.setString(2, book.getAuthor());
-            ps.setInt(3, book.getPagesNum());
-            ps.setInt(4, book.getUserId());
-            ps.setBlob(5, book.getContentPdf());
-            setX(ps.executeUpdate());
-            conn.close();
+    public void insertBook(String title, String author, int pages) {
+        Connection conn = null;
+        String message = null;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        try {
+            conn = new DbConnection().getConnection();
+            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum) VALUES (?,?,?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, title);
+            statement.setString(2, author);
+            statement.setInt(3, pages);
+
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                message = "Upload to database succeed!";
+            } else {
+                message = "Error! Upload failed!";
+            }
+        } catch (SQLException ex) {
+            System.out.println(message);
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
     }
@@ -101,20 +115,9 @@ public class BookDao {
             ps.setInt(1, bookId);
             setX(ps.executeUpdate());
             conn.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @SneakyThrows
-    public Blob getBookContent(int bookId) {
-        Connection conn = new DbConnection().getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT ContentPdf FROM TB_BOOK WHERE BookID = ? AND ContentPdf IS NOT NULL");
-        ps.setInt(1, bookId);
-        ResultSet rs = ps.executeQuery();
-
-        return rs.getBlob("ContentPdf");
     }
 
     public int getX() {

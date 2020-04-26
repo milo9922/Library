@@ -48,12 +48,6 @@
                         Nieprawidłowe dane!
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="custom-file" style="margin-left: 15px; margin-top: 10px">
-                        <input type="file" class="custom-file-input" id="contentPdf" name="contentPdf" required>
-                        <label class="custom-file-label" for="contentPdf" id="fileLabel">Wybierz plik</label>
-                    </div>
-                </div>
 
             </div>
 
