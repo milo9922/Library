@@ -77,6 +77,7 @@
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/about">O nas</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/contact">Kontakt</a>
             <%
                 if (userService.checkIfUserIsLogged(session)) {
             %>
@@ -109,9 +110,9 @@
                 <div class="col p-4 d-flex flex-column position-static">
                     <h3 class="mb-0">Brak interesującego Cię tytułu?</h3>
                     <br>
-                    <p class="card-text mb-auto">Wypełnij krótki formularz, a my postaramy się uzupełnić naszą ofertę
+                    <p class="card-text mb-auto">Skontaktuj się z nami, a my postaramy się uzupełnić naszą ofertę
                         jak najszybciej!</p>
-                    <a href="${pageContext.request.contextPath}/books/add" class="stretched-link">Sprawdź...</a>
+                    <a href="${pageContext.request.contextPath}/contact" class="stretched-link">Sprawdź...</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -126,18 +127,17 @@
         <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success">Ostatnio dodano</strong>
-                    <h3 class="mb-0">Tytuł</h3>
-                    <div class="mb-1 text-muted">Nov 11</div>
-                    <p class="mb-auto">Krótki opis</p>
-                    <a href="#" class="stretched-link">Redirect do listy książek</a>
+                    <strong class="d-inline-block mb-2 text-success"></strong>
+                    <h3 class="mb-0">TOP 5</h3>
+                    <br>
+                    <p class="mb-auto">Najchętniej wypożyczane przez naszych użytkowników</p>
+                    <a href="#" class="stretched-link">Sprawdź...</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
                          preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
                          aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#55595c"/>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                     </svg>
                 </div>
             </div>
