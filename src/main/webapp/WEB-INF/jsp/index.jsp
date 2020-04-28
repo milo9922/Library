@@ -131,7 +131,7 @@
                     <h3 class="mb-0">TOP 5</h3>
                     <br>
                     <p class="mb-auto">Najchętniej wypożyczane przez naszych użytkowników</p>
-                    <a href="#" class="stretched-link">Sprawdź...</a>
+                    <a href="${pageContext.request.contextPath}/books/top" class="stretched-link">Sprawdź...</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"

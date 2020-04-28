@@ -16,4 +16,10 @@ public class BookService {
         latestBooks.sort((Comparator.comparing(Book::getAddDate).reversed()));
         return latestBooks.stream().limit(howMany).collect(Collectors.toList());
     }
+
+    public List<Book> getMostOftenBorrowedBooks(int howMany) {
+        List<Book> latestBooks = new BookDao().getAllBooks();
+        latestBooks.sort((Comparator.comparing(Book::getNumberOfBorrows).reversed()));
+        return latestBooks.stream().limit(howMany).collect(Collectors.toList());
+    }
 }

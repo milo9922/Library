@@ -44,6 +44,11 @@ public class BookController {
         return "borrowedBooksList";
     }
 
+    @GetMapping("/top")
+    public String mostOftenBorrowed() {
+        return "topBorrowed";
+    }
+
     @PostMapping("/ReturnBook{id}")
     public String returnBook() {
         return "ReturnBook";
