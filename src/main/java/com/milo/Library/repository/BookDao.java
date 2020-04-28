@@ -10,15 +10,13 @@ import java.util.List;
 @Repository
 public class BookDao {
 
-    int x;
-
     public void insertBook(String title, String author, int pages, int userId) {
         Connection conn = null;
-        String message = null;
+        String message;
 
         try {
             conn = new DbConnection().getConnection();
-            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum, UserID) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum, AddedBy, AddDate, NumberOfBorrows) VALUES (?, ?, ?, ?, CURRENT_DATE, 0)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, title);
             statement.setString(2, author);
@@ -31,8 +29,9 @@ public class BookDao {
             } else {
                 message = "Error! Upload failed!";
             }
-        } catch (SQLException ex) {
             System.out.println(message);
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             if (conn != null) {
@@ -46,21 +45,20 @@ public class BookDao {
 
     }
 
-    // TODO Zaimplementować usuwanie książek dostępne tylko dla adminów i dodającego daną książkę
-    public int removeBook(int bookId) {
+    // available only for admins
+    public void removeBook(int bookId) {
         try {
             Connection conn = new DbConnection().getConnection();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM TB_BOOK WHERE BookID = ?");
             ps.setInt(1, bookId);
-            setX(ps.executeUpdate());
+            ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return getX();
     }
 
-    public List<Book> getAllBooks(boolean onlyBorrowed) {
+    public List<Book> getAllBooks() {
         List<Book> books = new LinkedList<>();
         try {
             Connection conn = new DbConnection().getConnection();
@@ -73,18 +71,14 @@ public class BookDao {
                 String title = rs.getString("Title");
                 String author = rs.getString("Author");
                 int pagesNum = rs.getInt("PagesNum");
-                int userId = rs.getInt("UserID");
+                int addedBy = rs.getInt("AddedBy");
                 Date addDate = rs.getDate("AddDate");
-                Blob contentPdf = rs.getBlob("ContentPdf");
-                if (onlyBorrowed) {
-                    if (userId == 0) {
-                        books.add(new Book(bookId, title, author, pagesNum, userId, addDate, contentPdf));
-                    }
+                int borrowedBy = rs.getInt("BorrowedBy");
+                Date borrowDate = rs.getDate("BorrowDate");
+                Date returnDate = rs.getDate("ReturnDate");
+                int numberOfBorrows = rs.getInt("NumberOfBorrows");
 
-                } else {
-                    books.add(new Book(bookId, title, author, pagesNum, userId, addDate, contentPdf));
-                }
-
+                books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
             }
             conn.close();
 
@@ -98,10 +92,10 @@ public class BookDao {
     public void borrowBook(int bookId, int userId) {
         try {
             Connection conn = new DbConnection().getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET UserID = ?, BorrowDate = CURRENT_DATE, ReturnDate = null WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
             ps.setInt(1, userId);
             ps.setInt(2, bookId);
-            setX(ps.executeUpdate());
+            ps.executeUpdate();
             conn.close();
 
         } catch (Exception e) {
@@ -112,20 +106,13 @@ public class BookDao {
     public void returnBook(int bookId) {
         try {
             Connection conn = new DbConnection().getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET UserID = null, ReturnDate = CURRENT_DATE WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = null, BorrowDate = NULL, ReturnDate = CURRENT_DATE WHERE BookID = ?");
             ps.setInt(1, bookId);
-            setX(ps.executeUpdate());
+            ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
 }

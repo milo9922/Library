@@ -29,7 +29,6 @@
             <%
                 UserDao userDao = new UserDao();
                 boolean isCurrentUserAdmin = userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")));
-
                 if (isCurrentUserAdmin) {
             %>
             <th scope="col">Dodana przez</th>
@@ -42,7 +41,7 @@
             try {
                 int i = 0;
                 BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks(false);
+                List<Book> allBooks = bookDao.getAllBooks();
                 while (i < allBooks.size()) {
         %>
 
@@ -57,7 +56,7 @@
             <%
                 if (isCurrentUserAdmin) {
             %>
-            <th scope="row"><%=userDao.getUserNameById(allBooks.get(i).getUserId())%>
+            <th scope="row"><%=userDao.getUserNameById(allBooks.get(i).getAddedBy())%>
             </th>
             <%
                 }

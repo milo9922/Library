@@ -98,7 +98,8 @@
         <div class="col-md-6 px-0">
             <h1 class="display-4 font-italic">Nowości</h1>
             <p class="lead my-3">Ostatnio dodane książki</p>
-            <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Sprawdź...</a></p>
+            <p class="lead mb-0"><a href="${pageContext.request.contextPath}/books/latest"
+                                    class="text-white font-weight-bold">Sprawdź...</a></p>
         </div>
     </div>
 
@@ -179,6 +180,7 @@
 
             <div class="p-4">
                 <h4 class="font-italic">Znajdziesz nas na</h4>
+                <br>
                 <ol class="list-unstyled">
                     <li><a href="https://github.com/">GitHub</a></li>
                     <li><a href="https://twitter.com/">Twitter</a></li>
@@ -193,10 +195,8 @@
 
 <footer class="blog-footer">
     <p>
-        <a href="#" style="align-content: center">Powrót na górę</a>
+        <a href="${pageContext.request.contextPath}/" style="align-content: center">Powrót na górę</a>
     </p>
 </footer>
 </body>
 </html>
-
-<%--TODO Dodać funkcjonalności widoczne tylko dla zalogowanych adminów--%>

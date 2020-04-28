@@ -14,6 +14,11 @@ public class BookController {
         return "allBooks";
     }
 
+    @GetMapping("/latest")
+    public String latestBooks() {
+        return "latestBooks";
+    }
+
     @GetMapping("/add")
     public String libraryPage() {
         return "addBookForm";

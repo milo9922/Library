@@ -1,18 +1,21 @@
 CREATE TABLE IF NOT EXISTS TB_USER
 (
-    UserID   int UNIQUE  NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Login    varchar(18) NOT NULL UNIQUE,
-    Password varchar(64) NOT NULL,
-    Email    varchar(64) NOT NULL UNIQUE
+    UserID   INT UNIQUE  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Login    VARCHAR(18) NOT NULL UNIQUE,
+    Password VARCHAR(64) NOT NULL,
+    Email    VARCHAR(64) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS TB_BOOK
 (
-    BookID     int UNIQUE  NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Title      varchar(30) NOT NULL,
-    Author     varchar(30) NOT NULL,
-    PagesNum   int,
-    UserID     int,
-    BorrowDate DATE,
-    ReturnDate DATE
+    BookID          INT UNIQUE  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Title           VARCHAR(30) NOT NULL,
+    Author          VARCHAR(30) NOT NULL,
+    PagesNum        INT,
+    AddedBy         INT,
+    AddDate         DATE,
+    BorrowedBy      INT,
+    BorrowDate      DATE,
+    ReturnDate      DATE,
+    NumberOfBorrows INT
 );

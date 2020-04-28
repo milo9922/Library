@@ -2,13 +2,10 @@ package com.milo.Library.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.sql.Blob;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Book {
 
@@ -16,17 +13,24 @@ public class Book {
     private String title;
     private String author;
     private int pagesNum;
-    private int userId;
+    private int addedBy;
     private Date addDate;
-    private Blob contentPdf;
+    private int borrowedBy;
+    private Date borrowDate;
+    private Date returnDate;
+    private int numberOfBorrows;
 
-    // new correct constructor
-    public Book(String title, String author, int pagesNum, int userId, Blob contentPdf) {
+
+    public Book(String title, String author, int pagesNum, int addedBy, Date addDate, int borrowedBy, Date borrowDate, Date returnDate, int numberOfBorrows) {
         this.title = title;
         this.author = author;
         this.pagesNum = pagesNum;
-        this.userId = userId;
-        this.contentPdf = contentPdf;
+        this.addedBy = addedBy;
+        this.addDate = addDate;
+        this.borrowedBy = borrowedBy;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
+        this.numberOfBorrows = numberOfBorrows;
     }
 
 }
