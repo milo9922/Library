@@ -38,12 +38,12 @@
             try {
                 int i = 0;
                 BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks();
+                List<Book> allBooks = bookDao.getAllBooks(false);
                 Book currentBook;
                 int currentUserId = new UserDao().getUserIdByName((String) session.getAttribute("user"));
                 while (i < allBooks.size()) {
                     currentBook = allBooks.get(i);
-                    if (currentBook. == currentUserId) {
+                    if (currentBook.getBorrowedBy() == currentUserId) {
         %>
 
         <tbody>

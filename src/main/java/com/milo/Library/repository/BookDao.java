@@ -58,7 +58,7 @@ public class BookDao {
         }
     }
 
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks(boolean onlyAvailable) {
         List<Book> books = new LinkedList<>();
         try {
             Connection conn = new DbConnection().getConnection();
@@ -78,10 +78,16 @@ public class BookDao {
                 Date returnDate = rs.getDate("ReturnDate");
                 int numberOfBorrows = rs.getInt("NumberOfBorrows");
 
-                books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
+                if (onlyAvailable) {
+                    if (borrowedBy == 0) {
+                        books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
+                    }
+                } else {
+                    books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
+                }
+
             }
             conn.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +103,6 @@ public class BookDao {
             ps.setInt(2, bookId);
             ps.executeUpdate();
             conn.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

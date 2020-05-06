@@ -39,7 +39,7 @@
             try {
                 int i = 0;
                 BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks();
+                List<Book> allBooks = bookDao.getAllBooks(true);
                 while (i < allBooks.size()) {
         %>
 

@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 public class BookService {
 
     public List<Book> getLatestBooks(int howMany) {
-        List<Book> latestBooks = new BookDao().getAllBooks();
+        List<Book> latestBooks = new BookDao().getAllBooks(false);
         latestBooks.sort((Comparator.comparing(Book::getAddDate).reversed()));
         return latestBooks.stream().limit(howMany).collect(Collectors.toList());
     }
 
     public List<Book> getMostOftenBorrowedBooks(int howMany) {
-        List<Book> latestBooks = new BookDao().getAllBooks();
+        List<Book> latestBooks = new BookDao().getAllBooks(false);
         latestBooks.sort((Comparator.comparing(Book::getNumberOfBorrows).reversed()));
         return latestBooks.stream().limit(howMany).collect(Collectors.toList());
     }
