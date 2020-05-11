@@ -44,7 +44,7 @@
                 <%
                     UserService userService = new UserService();
                     UserDao userDao = new UserDao();
-                    if (userService.checkIfUserIsLogged(session)) {
+                    if (userService.isUserLogged(session)) {
                         if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
                 %>
                 <h6 class="font-italic">Witaj, [ADMIN]<%=session.getAttribute("user")%>! <br><a
@@ -79,7 +79,7 @@
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/showAll">Spis książek</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/contact">Kontakt</a>
             <%
-                if (userService.checkIfUserIsLogged(session)) {
+                if (userService.isUserLogged(session)) {
             %>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowList">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowed">Wypożyczone</a>

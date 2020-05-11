@@ -5,7 +5,7 @@
 <%@ page import="com.milo.Library.service.UserService" %>
 <%@ page import="java.util.List" %>
 <%
-    if (!new UserService().checkIfUserIsLogged(session)) {
+    if (!new UserService().isUserLogged(session)) {
         response.sendRedirect("http://localhost:8080/user/signin");
     }
 %>

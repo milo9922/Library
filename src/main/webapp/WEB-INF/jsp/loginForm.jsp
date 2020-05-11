@@ -1,7 +1,7 @@
 <%@ page import="com.milo.Library.service.UserService" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    if (new UserService().checkIfUserIsLogged(session)) {
+    if (new UserService().isUserLogged(session)) {
         response.sendRedirect("/");
     }
 %>
@@ -41,6 +41,7 @@
     <img src="/png/book.png" alt="" width="96" height="72">
     <br><br>
     <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
+    <br>
     <%
         if (session.getAttribute("loginError") != null) {
             if ((boolean) session.getAttribute("loginError")) {
