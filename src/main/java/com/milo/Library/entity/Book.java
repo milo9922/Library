@@ -20,17 +20,4 @@ public class Book {
     private Date returnDate;
     private int numberOfBorrows;
 
-
-    public Book(String title, String author, int pagesNum, int addedBy, Date addDate, int borrowedBy, Date borrowDate, Date returnDate, int numberOfBorrows) {
-        this.title = title;
-        this.author = author;
-        this.pagesNum = pagesNum;
-        this.addedBy = addedBy;
-        this.addDate = addDate;
-        this.borrowedBy = borrowedBy;
-        this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
-        this.numberOfBorrows = numberOfBorrows;
-    }
-
 }
