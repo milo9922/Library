@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 @Service
 public class UserService {
 
-    public boolean checkIfUserIsLogged(HttpSession session) {
+    public boolean isUserLogged(HttpSession session) {
         if (session.getAttribute("isLogged") != null) {
             return (boolean) session.getAttribute("isLogged");
         } else {
