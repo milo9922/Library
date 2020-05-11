@@ -14,7 +14,7 @@ public class Logout extends HttpServlet {
 
     private static void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        if (new UserService().checkIfUserIsLogged(session)) {
+        if (new UserService().isUserLogged(session)) {
             session.setAttribute("isLogged", false);
             session.setAttribute("user", "");
             response.sendRedirect("/");

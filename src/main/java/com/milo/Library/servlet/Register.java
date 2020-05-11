@@ -14,7 +14,7 @@ public class Register extends HttpServlet {
 
     private static void register(HttpServletRequest request, HttpServletResponse response) {
         try {
-            if (!new UserService().checkIfUserIsLogged(request.getSession())) {
+            if (!new UserService().isUserLogged(request.getSession())) {
                 UserDao userDao = new UserDao();
                 User user = new User(request.getParameter("username"), request.getParameter("email"), request.getParameter("password"), false);
 
