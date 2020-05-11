@@ -14,9 +14,8 @@
     <div class="container">
         <h1 class="mt-5">O nas</h1>
         <br>
-        <p class="lead">Jesteśmy firmą, która stara się łączyć przyjemność czytania w domowym zaciszu i oszczędność
-            zarówno czasu jak i pieniędzy.
-            Korzystając z naszego serwisu nie musisz wychodzić z domu w celu znalezienia interesującej Cię książki,
+        <p class="lead">Korzystając z naszego serwisu nie musisz wychodzić z domu w celu znalezienia interesującej Cię
+            książki,
             wystarczy założyć konto by cieszyć się bogatym, ciągle uzupełnianym o nowe tytuły, zbiorem.
             Wystarczy jedno kliknięcie, aby wypożyczyć interesującą Cię pozycję, a następnie odebrać ją w czynnej przez
             całą dobę bibliotece. Dodatkowo możliwe jest dodawanie przez użytkowników nowych książek, co z pewnością
