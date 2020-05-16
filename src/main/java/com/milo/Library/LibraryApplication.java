@@ -21,11 +21,18 @@ public class LibraryApplication {
         return bean;
     }
 
+    @Bean
+    public ServletRegistrationBean removeBookServletRegistrationBean() {
+        ServletRegistrationBean bean = new ServletRegistrationBean(
+                new RemoveBook(), "/books/remove");
+        return bean;
+    }
+
     //borrowBook servlet registration
     @Bean
     public ServletRegistrationBean borrowBookServletRegistrationBean() {
         ServletRegistrationBean bean = new ServletRegistrationBean(
-                new BorrowBook(), "/books/BorrowBook");
+                new BorrowBook(), "/books/borrow");
         return bean;
     }
 
@@ -33,7 +40,7 @@ public class LibraryApplication {
     @Bean
     public ServletRegistrationBean returnServletRegistrationBean() {
         ServletRegistrationBean bean = new ServletRegistrationBean(
-                new ReturnBook(), "/books/ReturnBook");
+                new ReturnBook(), "/books/return");
         return bean;
     }
 

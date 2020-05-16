@@ -81,7 +81,7 @@
             <%
                 if (userService.isUserLogged(session)) {
             %>
-            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowList">Wypożycz</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/available">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowed">Wypożyczone</a>
             <%
                 if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {

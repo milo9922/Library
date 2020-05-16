@@ -4,7 +4,6 @@ import com.milo.Library.repository.BookDao;
 import com.milo.Library.repository.UserDao;
 import lombok.SneakyThrows;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/books/", name = "AddBook")
-@MultipartConfig(maxFileSize = 100000000)
 public class AddBook extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

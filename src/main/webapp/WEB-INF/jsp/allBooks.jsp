@@ -27,22 +27,23 @@
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
             <%
-                UserDao userDao = new UserDao();
-                boolean isCurrentUserAdmin = userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")));
-                if (isCurrentUserAdmin) {
+                try {
+                    int i = 0;
+                    BookDao bookDao = new BookDao();
+                    List<Book> allBooks = bookDao.getAllBooks(false);
+                    UserDao userDao = new UserDao();
+                    boolean isCurrentUserAdmin = userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")));
+                    if (isCurrentUserAdmin) {
             %>
             <th scope="col">Dodana przez</th>
+            <th scope="col"></th>
             <%
-                }
+                while (i < allBooks.size()) {
             %>
         </tr>
         </thead>
         <%
-            try {
-                int i = 0;
-                BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks(false);
-                while (i < allBooks.size()) {
+
         %>
 
         <tbody>
@@ -58,13 +59,17 @@
             %>
             <th scope="row"><%=userDao.getUserNameById(allBooks.get(i).getAddedBy())%>
             </th>
+            <th scope="row"><a
+                    href="${pageContext.request.contextPath}/books/remove?id=<%=allBooks.get(i).getBookId()%>">Usuń</a>
+            </th>
             <%
                 }
             %>
         </tr>
         </tbody>
         <%
-                    i++;
+                        i++;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -45,7 +45,6 @@ public class BookDao {
 
     }
 
-    // available only for admins
     public void removeBook(int bookId) {
         try {
             Connection conn = new DbConnection().getConnection();

@@ -29,19 +29,24 @@ public class BookController {
         return "AddBook";
     }
 
-    @GetMapping("/borrowList")
-    public String borrowBookList() {
-        return "availableBooksList";
+    @RequestMapping("/remove{id}")
+    public String removeBook() {
+        return "RemoveBook";
     }
 
-    @PostMapping("/BorrowBook{id}")
+    @GetMapping("/available")
+    public String borrowBookList() {
+        return "availableBooks";
+    }
+
+    @RequestMapping("/borrow{id}")
     public String borrowBook() {
         return "BorrowBook";
     }
 
     @GetMapping("/borrowed")
     public String borrowedBooks() {
-        return "borrowedBooksList";
+        return "borrowedBooks";
     }
 
     @GetMapping("/top")
@@ -49,7 +54,7 @@ public class BookController {
         return "topBorrowed";
     }
 
-    @PostMapping("/ReturnBook{id}")
+    @RequestMapping("/return{id}")
     public String returnBook() {
         return "ReturnBook";
     }

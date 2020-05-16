@@ -1,9 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.milo.Library.entity.Book" %>
 <%@ page import="com.milo.Library.repository.BookDao" %>
-<%@ page import="com.milo.Library.repository.UserDao" %>
 <%@ page import="com.milo.Library.service.UserService" %>
 <%@ page import="java.util.List" %>
+
 <%
     if (!new UserService().isUserLogged(session)) {
         response.sendRedirect("http://localhost:8080/user/signin");
@@ -23,12 +24,12 @@
 <body class="py-4">
 
 <div class="container">
-    <h2 style="text-align: center">Aktualnie wypożyczone</h2>
+    <h2 style="text-align: center">Dostępne do wypożyczenia</h2>
     <br><br>
-    <table id="books" class="table table-striped" style="background: #abdde5">
+    <table id="books" class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Tytuł</th>
+            <th scope="col">Tytul</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
             <th scope="col"></th>
@@ -38,35 +39,25 @@
             try {
                 int i = 0;
                 BookDao bookDao = new BookDao();
-                List<Book> allBooks = bookDao.getAllBooks(false);
-                Book currentBook;
-                int currentUserId = new UserDao().getUserIdByName((String) session.getAttribute("user"));
+                List<Book> allBooks = bookDao.getAllBooks(true);
                 while (i < allBooks.size()) {
-                    currentBook = allBooks.get(i);
-                    if (currentBook.getBorrowedBy() == currentUserId) {
         %>
 
         <tbody>
         <tr>
-            <th scope="row"><%=currentBook.getTitle()%>
+            <th scope="row"><%=allBooks.get(i).getTitle()%>
             </th>
-            <th scope="row"><%=currentBook.getAuthor()%>
+            <th scope="row"><%=allBooks.get(i).getAuthor()%>
             </th>
-            <th scope="row"><%=currentBook.getPagesNum()%>
-            </th>
-            <th scope="row"><a
-                    class="btn btn-sm btn-light"
-                    href="${pageContext.request.contextPath}/books/ReturnBook?id=<%=currentBook.getBookId()%>">Zwróć</a>
+            <th scope="row"><%=allBooks.get(i).getPagesNum()%>
             </th>
             <th scope="row"><a
-                    class="btn btn-sm btn-light"
-                    href="${pageContext.request.contextPath}/books/ReturnBook?id=<%=currentBook.getBookId()%>">Czytaj</a>
+                    href="${pageContext.request.contextPath}/books/borrow?id=<%=allBooks.get(i).getBookId()%>">Wypożycz</a>
             </th>
         </tr>
         </tbody>
 
         <%
-                    }
                     i++;
                 }
             } catch (Exception e) {
