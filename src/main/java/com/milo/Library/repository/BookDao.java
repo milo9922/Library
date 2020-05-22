@@ -1,8 +1,13 @@
 package com.milo.Library.repository;
 
 import com.milo.Library.entity.Book;
+import com.milo.Library.service.BookService;
 import org.springframework.stereotype.Repository;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +62,37 @@ public class BookDao {
         }
     }
 
+    public Book getSingleBookById(int bookId) {
+        try {
+            Connection conn = new DbConnection().getConnection();
+            String query = "SELECT * FROM TB_BOOK WHERE BookID = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, bookId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                int bookID = rs.getInt("BookID");
+                String title = rs.getString("Title");
+                String author = rs.getString("Author");
+                int pagesNum = rs.getInt("PagesNum");
+                int addedBy = rs.getInt("AddedBy");
+                Date addDate = rs.getDate("AddDate");
+                int borrowedBy = rs.getInt("BorrowedBy");
+                Date borrowDate = rs.getDate("BorrowDate");
+                Date returnDate = rs.getDate("ReturnDate");
+                int numberOfBorrows = rs.getInt("NumberOfBorrows");
+
+                conn.close();
+                return new Book(bookID, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public List<Book> getAllBooks(boolean onlyAvailable) {
         List<Book> books = new LinkedList<>();
         try {
@@ -97,9 +133,10 @@ public class BookDao {
     public void borrowBook(int bookId, int userId) {
         try {
             Connection conn = new DbConnection().getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, BorrowQrCode = ?, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
             ps.setInt(1, userId);
-            ps.setInt(2, bookId);
+            ps.setBlob(2, new BookService().generateBorrowIdQrCodeBis());
+            ps.setInt(3, bookId);
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -117,6 +154,56 @@ public class BookDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int getBookIdByTitle(String title) {
+        try {
+            Connection conn = new DbConnection().getConnection();
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_BOOK";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                String titleFromDb = rs.getString("Title");
+                if (title.equals(titleFromDb)) {
+                    int bookId = rs.getInt("BookID");
+                    conn.close();
+                    return bookId;
+                }
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public void createBorrowQrCodePngFileById(int bookId) {
+        try {
+            Connection conn = new DbConnection().getConnection();
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM TB_BOOK";
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                int bookIdFromDb = rs.getInt("BookID");
+                if (bookId == bookIdFromDb) {
+                    byte[] qrCodeData = rs.getBytes("BorrowQrCode");
+                    ByteArrayInputStream bais = new ByteArrayInputStream(qrCodeData);
+                    BufferedImage qrCodeImage = ImageIO.read(bais);
+                    ClassLoader classLoader = getClass().getClassLoader();
+                    File qrBorrowCode = new File(classLoader.getResource(".").getFile() + "/static/png/borrowQrCode.png");
+                    ImageIO.write(qrCodeImage, "png", qrBorrowCode);
+                }
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

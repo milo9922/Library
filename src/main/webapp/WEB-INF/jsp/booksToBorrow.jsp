@@ -4,6 +4,7 @@
 <%@ page import="com.milo.Library.repository.UserDao" %>
 <%@ page import="com.milo.Library.service.UserService" %>
 <%@ page import="java.util.List" %>
+
 <%
     if (!new UserService().isUserLogged(session)) {
         response.sendRedirect("http://localhost:8080/user/signin");
@@ -31,6 +32,7 @@
             <th scope="col">Tytuł</th>
             <th scope="col">Autor</th>
             <th scope="col">Strony</th>
+            <th scope="col">Kod odbioru</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -54,13 +56,14 @@
             </th>
             <th scope="row"><%=currentBook.getPagesNum()%>
             </th>
-            <th scope="row"><a
-                    class="btn btn-sm btn-light"
-                    href="${pageContext.request.contextPath}/books/return?id=<%=currentBook.getBookId()%>">Zwróć</a>
+            <th scope="row">
+                <a class="btn btn-sm btn-light"
+                   href="${pageContext.request.contextPath}/books/showQrCode?id=<%=currentBook.getBookId()%>">Pokaż</a>
+                <!-- TODO Implementacja kodu QR przekazującego BorrowID w postaci UUID -->
             </th>
             <th scope="row"><a
                     class="btn btn-sm btn-light"
-                    href="${pageContext.request.contextPath}/books/return?id=<%=currentBook.getBookId()%>">Czytaj</a>
+                    href="${pageContext.request.contextPath}/books/return?id=<%=currentBook.getBookId()%>">Zwróć</a>
             </th>
         </tr>
         </tbody>
