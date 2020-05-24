@@ -46,8 +46,8 @@
     <img class="center" src="${pageContext.request.contextPath}/png/borrowQrCode.png" width="250" height="250"
          alt="Nie znaleziono kodu Qr">
     <br><br>
-    <div class="button">
-        <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Powrót</a>
+    <div align="center">
+        <a href="${pageContext.request.contextPath}/" class="btn-secondary">Powrót</a>
     </div>
 </div>
 </body>
