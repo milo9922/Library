@@ -82,7 +82,7 @@
                 if (userService.isUserLogged(session)) {
             %>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/available">Wypożycz</a>
-            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/borrowed">Wypożyczone</a>
+            <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/toBorrow">Wypożyczone</a>
             <%
                 if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
             %>
@@ -193,10 +193,5 @@
 
 </main>
 
-<footer class="blog-footer">
-    <p>
-        <a href="${pageContext.request.contextPath}/" style="align-content: center">Powrót na górę</a>
-    </p>
-</footer>
 </body>
 </html>
