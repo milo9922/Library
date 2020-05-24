@@ -22,8 +22,7 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <h2>Zaproponuj nową książkę</h2>
-        <p class="lead">Wypełnij krótki formularz aby zaproponować dodanie nowej książki do biblioteki</p>
+        <h2>Dodaj nową książkę</h2>
     </div>
     <br><br>
 
