@@ -38,13 +38,11 @@
             <th scope="col">Dodana przez</th>
             <th scope="col"></th>
             <%
+                }
                 while (i < allBooks.size()) {
             %>
         </tr>
         </thead>
-        <%
-
-        %>
 
         <tbody>
         <tr>
@@ -68,9 +66,9 @@
         </tr>
         </tbody>
         <%
-                        i++;
-                    }
+                    i++;
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
