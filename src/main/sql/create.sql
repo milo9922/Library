@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS TB_BOOK
     Author          VARCHAR(50)  NOT NULL,
     PagesNum        INT,
     AddedBy         INT,
-    AddDate         DATE,
+    AddDate         DATE         NOT NULL,
     BorrowedBy      INT,
     BorrowDate      DATE,
     BorrowQrCode    BLOB,
     ReturnDate      DATE,
-    NumberOfBorrows INT
+    NumberOfBorrows INT DEFAULT 0
 );
