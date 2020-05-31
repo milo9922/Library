@@ -13,3 +13,6 @@ VALUES (1, 'Przełęcz Diatłowa. Tajemnica dziewięciorga', 'Anna Matwiejewa', 
        (11, 'Pacjentka', 'Alex Michaelides', 352, 3, CURRENT_DATE),
        (12, 'Nowy wspaniały świat', 'Aldous Huxley', 256, 3, CURRENT_DATE),
        (13, 'Gdzie śpiewają raki', 'Delia Owens', 416, 3, CURRENT_DATE);
+
+
+
