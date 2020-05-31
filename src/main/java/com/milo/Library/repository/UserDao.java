@@ -3,6 +3,7 @@ package com.milo.Library.repository;
 import com.milo.Library.entity.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,16 +13,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class UserDao {
 
-    int x;
-    DbConnection dbConn = new DbConnection();
+    private final DbConnection DB_CONN = new DbConnection();
+    private int x;
 
     public void registerUser(User user) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_USER(Login, Password, Email) VALUES (?,?,?)");
-            ps.setString(1, user.getUsername());
+            ps.setString(1, user.getLogin());
             ps.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             ps.setString(3, user.getEmail());
             setX(ps.executeUpdate());
@@ -33,14 +35,14 @@ public class UserDao {
 
     public boolean checkIfUserIsNew(User user) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 String usernameDb = rs.getString("Login");
                 String emailDb = rs.getString("Email");
-                if (user.getUsername().equals(usernameDb) || user.getEmail().equals(emailDb)) {
+                if (user.getLogin().equals(usernameDb) || user.getEmail().equals(emailDb)) {
                     conn.close();
                     return false;
                 }
@@ -55,7 +57,7 @@ public class UserDao {
 
     public boolean checkLoginAndPassword(String login, String password) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -78,7 +80,7 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -101,7 +103,7 @@ public class UserDao {
 
     public int getUserIdByName(String username) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -125,7 +127,7 @@ public class UserDao {
 
     public String getUserNameById(int userId) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -147,9 +149,9 @@ public class UserDao {
         return null;
     }
 
-    public boolean isUserAdmin(int userId) {
+    public boolean getIsUserAdmin(int userId) {
         try {
-            Connection conn = dbConn.getConnection();
+            Connection conn = DB_CONN.getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
