@@ -1,28 +1,39 @@
 package com.milo.Library.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+
+@Entity
+@Table(name = "TB_USER")
 @Data
-@NoArgsConstructor
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    private String username;
+    @NotEmpty
+    private String login;
+    @NotEmpty
     private String password;
+    @Email
+    @NotEmpty
     private String email;
     private boolean isAdmin;
 
-    public User(String username, String email, String password, boolean isAdmin) {
-        this.username = username;
+    public User(String login, String email, String password, boolean isAdmin) {
+        this.login = login;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
     }
 
-    public User(int userId, String username, String email) {
+    public User(int userId, String login, String email) {
         this.userId = userId;
-        this.username = username;
+        this.login = login;
         this.email = email;
     }
 }
