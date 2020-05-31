@@ -3,6 +3,7 @@ package com.milo.Library.repository;
 import com.milo.Library.entity.Book;
 import com.milo.Library.service.BookService;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class BookDao {
 
     public void insertBook(String title, String author, int pages, int userId) {
@@ -79,11 +81,12 @@ public class BookDao {
                 Date addDate = rs.getDate("AddDate");
                 int borrowedBy = rs.getInt("BorrowedBy");
                 Date borrowDate = rs.getDate("BorrowDate");
+                Blob borrowQrCode = rs.getBlob("BorrowQrCode");
                 Date returnDate = rs.getDate("ReturnDate");
                 int numberOfBorrows = rs.getInt("NumberOfBorrows");
 
                 conn.close();
-                return new Book(bookID, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows);
+                return new Book(bookID, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, borrowQrCode, returnDate, numberOfBorrows);
             }
 
         } catch (Exception e) {
@@ -110,15 +113,16 @@ public class BookDao {
                 Date addDate = rs.getDate("AddDate");
                 int borrowedBy = rs.getInt("BorrowedBy");
                 Date borrowDate = rs.getDate("BorrowDate");
+                Blob borrowQrCode = rs.getBlob("BorrowQrCode");
                 Date returnDate = rs.getDate("ReturnDate");
                 int numberOfBorrows = rs.getInt("NumberOfBorrows");
 
                 if (onlyAvailable) {
                     if (borrowedBy == 0) {
-                        books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
+                        books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, borrowQrCode, returnDate, numberOfBorrows));
                     }
                 } else {
-                    books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, returnDate, numberOfBorrows));
+                    books.add(new Book(bookId, title, author, pagesNum, addedBy, addDate, borrowedBy, borrowDate, borrowQrCode, returnDate, numberOfBorrows));
                 }
 
             }
