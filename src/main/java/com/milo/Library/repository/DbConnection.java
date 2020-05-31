@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection {
+class DbConnection {
 
     private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
     private final String DB_USER = "3Q84ulcsc7";
