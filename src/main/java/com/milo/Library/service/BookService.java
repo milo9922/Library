@@ -9,8 +9,6 @@ import com.milo.Library.entity.Book;
 import com.milo.Library.repository.BookDao;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,7 +23,11 @@ public class BookService {
     public List<Book> getLatestBooks(int howMany) {
         List<Book> latestBooks = new BookDao().getAllBooks(false);
         latestBooks.sort((Comparator.comparing(Book::getAddDate).reversed()));
-        return latestBooks.stream().limit(howMany).collect(Collectors.toList());
+        if (howMany < latestBooks.size()) {
+            return latestBooks.stream().limit(howMany).collect(Collectors.toList());
+        } else {
+            return latestBooks;
+        }
     }
 
     public List<Book> getMostOftenBorrowedBooks(int howMany) {
@@ -43,7 +45,4 @@ public class BookService {
         return new ByteArrayInputStream(pngOutputStream.toByteArray());
     }
 
-    public BufferedImage getQrCodeImageFromBis(ByteArrayInputStream qrCodeBis) throws IOException {
-        return ImageIO.read(qrCodeBis);
-    }
 }
