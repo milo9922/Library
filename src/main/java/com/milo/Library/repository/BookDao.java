@@ -15,22 +15,23 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class BookDao {
+public class BookDao extends DbConnection {
+
+    private Connection conn;
 
     public void insertBook(String title, String author, int pages, int userId) {
-        Connection conn = null;
-        String message;
 
         try {
-            conn = new DbConnection().getConnection();
+            conn = getConnection();
             String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum, AddedBy, AddDate, NumberOfBorrows) VALUES (?, ?, ?, ?, CURRENT_DATE, 0)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, title);
             statement.setString(2, author);
             statement.setInt(3, pages);
             statement.setInt(4, userId);
-
             int row = statement.executeUpdate();
+            String message;
+
             if (row > 0) {
                 message = "Upload to database succeed!";
             } else {
@@ -54,7 +55,7 @@ public class BookDao {
 
     public void removeBook(int bookId) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM TB_BOOK WHERE BookID = ?");
             ps.setInt(1, bookId);
             ps.executeUpdate();
@@ -66,7 +67,7 @@ public class BookDao {
 
     public Book getSingleBookById(int bookId) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             String query = "SELECT * FROM TB_BOOK WHERE BookID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, bookId);
@@ -99,7 +100,7 @@ public class BookDao {
     public List<Book> getAllBooks(boolean onlyAvailable) {
         List<Book> books = new LinkedList<>();
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);
@@ -136,7 +137,7 @@ public class BookDao {
 
     public void borrowBook(int bookId, int userId) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, BorrowQrCode = ?, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
             ps.setInt(1, userId);
             ps.setBlob(2, new BookService().generateBorrowIdQrCodeBis());
@@ -150,7 +151,7 @@ public class BookDao {
 
     public void returnBook(int bookId) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = null, BorrowDate = NULL, ReturnDate = CURRENT_DATE WHERE BookID = ?");
             ps.setInt(1, bookId);
             ps.executeUpdate();
@@ -162,7 +163,7 @@ public class BookDao {
 
     public int getBookIdByTitle(String title) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);
@@ -186,7 +187,7 @@ public class BookDao {
 
     public void createBorrowQrCodePngFileById(int bookId) {
         try {
-            Connection conn = new DbConnection().getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_BOOK";
             ResultSet rs = statement.executeQuery(query);

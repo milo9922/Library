@@ -14,20 +14,21 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDao {
+public class UserDao extends DbConnection {
 
-    private final DbConnection DB_CONN = new DbConnection();
+    private Connection conn;
     private int x;
 
     public void registerUser(User user) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_USER(Login, Password, Email) VALUES (?,?,?)");
             ps.setString(1, user.getLogin());
             ps.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             ps.setString(3, user.getEmail());
             setX(ps.executeUpdate());
             conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +36,7 @@ public class UserDao {
 
     public boolean checkIfUserIsNew(User user) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -57,7 +58,7 @@ public class UserDao {
 
     public boolean checkLoginAndPassword(String login, String password) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
             ResultSet rs = ps.executeQuery();
 
@@ -80,7 +81,7 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<>();
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -103,7 +104,7 @@ public class UserDao {
 
     public int getUserIdByName(String username) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -127,7 +128,7 @@ public class UserDao {
 
     public String getUserNameById(int userId) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
@@ -151,7 +152,7 @@ public class UserDao {
 
     public boolean getIsUserAdmin(int userId) {
         try {
-            Connection conn = DB_CONN.getConnection();
+            conn = getConnection();
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM TB_USER";
             ResultSet rs = statement.executeQuery(query);
