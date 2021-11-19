@@ -23,10 +23,10 @@ public class Register extends HttpServlet {
                     if (userDao.getX() > 0) {
                         response.sendRedirect("/user/signin");
                     } else {
-                        response.sendRedirect("http://localhost:8080/user/register/fail");
+                        response.sendRedirect("/user/register/fail");
                     }
                 } else {
-                    response.sendRedirect("http://localhost:8080/user/register/fail");
+                    response.sendRedirect("/user/register/fail");
                 }
             }
         } catch

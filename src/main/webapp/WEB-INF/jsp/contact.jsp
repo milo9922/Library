@@ -30,12 +30,12 @@
                 int i = 0;
                 List<User> allBooks = new UserDao().getAllUsers();
                 while (i < allBooks.size()) {
-                    if (new UserDao().isUserAdmin(allBooks.get(i).getUserId())) {
+                    if (new UserDao().getIsUserAdmin(allBooks.get(i).getUserId())) {
         %>
 
         <tbody>
         <tr>
-            <th scope="row"><%=allBooks.get(i).getUsername()%>
+            <th scope="row"><%=allBooks.get(i).getUserId()%>
             </th>
             <th scope="row"><%=allBooks.get(i).getEmail()%>
             </th>

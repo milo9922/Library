@@ -45,7 +45,7 @@
                     UserService userService = new UserService();
                     UserDao userDao = new UserDao();
                     if (userService.isUserLogged(session)) {
-                        if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
+                        if (userDao.getIsUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
                 %>
                 <h6 class="font-italic">Witaj, [ADMIN]<%=session.getAttribute("user")%>! <br><a
                         style="color: #343a40; font-size: 14px" href="${pageContext.request.contextPath}/user/Logout">Wyloguj
@@ -84,7 +84,7 @@
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/available">Wypożycz</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/toBorrow">Wypożyczone</a>
             <%
-                if (userDao.isUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
+                if (userDao.getIsUserAdmin(userDao.getUserIdByName((String) session.getAttribute("user")))) {
             %>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/books/add">Dodaj</a>
             <a class="p-2 text-muted" href="${pageContext.request.contextPath}/user/showAll">Spis użytkowników</a>

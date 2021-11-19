@@ -14,7 +14,7 @@ public class ReturnBook extends HttpServlet {
 
     private static void returnBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (!new UserService().isUserLogged(request.getSession())) {
-            response.sendRedirect("http://localhost:8080/user/signin");
+            response.sendRedirect("/user/signin");
         } else {
             new BookDao().returnBook(Integer.parseInt(request.getParameter("id")));
             response.sendRedirect("/books/borrowed");
