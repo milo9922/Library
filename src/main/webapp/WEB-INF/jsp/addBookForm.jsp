@@ -3,7 +3,7 @@
 
 <%
     if (!new UserService().isUserLogged(session)) {
-        response.sendRedirect("http://localhost:8080/user/signin");
+        response.sendRedirect("http://localhost:8081/user/signin");
     }
 %>
 
