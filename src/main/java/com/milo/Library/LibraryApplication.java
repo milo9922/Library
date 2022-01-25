@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
+//Due to raspberry pi crash project may not work now. I should fix it by the end of this month. Sorry for this inconvenience.
 @SpringBootApplication
 public class LibraryApplication {
 

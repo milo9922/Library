@@ -22,3 +22,5 @@ USERS:
 
 *passwords are hashed by BCrypt algorythm and then stored in database, "raw" password is not stored by any field in code.
 *jsp pages are created using bootstrap 4.4.1 templates
+
+BECAUSE OF PI CRASH DATABASE IS DOWN AT THE MOMENT. IT MAY TAKE COUPLE OF DAYS TO FIX THIS. SORRY FOR THIS INCONVENIENCE.
