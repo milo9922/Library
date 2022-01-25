@@ -35,7 +35,7 @@
 
         <tbody>
         <tr>
-            <th scope="row"><%=allBooks.get(i).getUsername()%>
+            <th scope="row"><%=allBooks.get(i).getLogin()%>
             </th>
             <th scope="row"><%=allBooks.get(i).getEmail()%>
             </th>

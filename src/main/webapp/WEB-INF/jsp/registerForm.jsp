@@ -43,8 +43,8 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>Hasło</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Hasło"
-                           required>
+                    <label for="password"></label><input type="password" class="form-control" id="password" name="password" placeholder="Hasło"
+                                                         required>
                     <div class="invalid-feedback">
                         Nieprawidłowe dane!
                     </div>

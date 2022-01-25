@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 class DbConnection {
 
-    private final String DB_URL = "jdbc:mysql://remotemysql.com:3306/3Q84ulcsc7";
-    private final String DB_USER = "3Q84ulcsc7";
+    private final String DB_URL = "jdbc:mysql://89.73.244.48:3306/librarydb";
+    private final String DB_USER = "user";
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, DB_USER, "zumqXjeFMY");
+        return DriverManager.getConnection(DB_URL, DB_USER, "library2021");
     }
 }

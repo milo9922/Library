@@ -36,4 +36,7 @@ public class User {
         this.login = login;
         this.email = email;
     }
+
+    public User() {
+    }
 }

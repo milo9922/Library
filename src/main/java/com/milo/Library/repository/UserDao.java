@@ -22,7 +22,7 @@ public class UserDao extends DbConnection {
     public void registerUser(User user) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO TB_USER(Login, Password, Email) VALUES (?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO tb_user(Login, Password, Email) VALUES (?,?,?)");
             ps.setString(1, user.getLogin());
             ps.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             ps.setString(3, user.getEmail());
@@ -37,7 +37,7 @@ public class UserDao extends DbConnection {
     public boolean checkIfUserIsNew(User user) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tb_user");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -59,7 +59,7 @@ public class UserDao extends DbConnection {
     public boolean checkLoginAndPassword(String login, String password) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM TB_USER");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tb_user");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -83,7 +83,7 @@ public class UserDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_USER";
+            String query = "SELECT * FROM tb_user";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
@@ -106,7 +106,7 @@ public class UserDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_USER";
+            String query = "SELECT * FROM tb_user";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
@@ -130,7 +130,7 @@ public class UserDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_USER";
+            String query = "SELECT * FROM tb_user";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
@@ -150,11 +150,11 @@ public class UserDao extends DbConnection {
         return null;
     }
 
-    public boolean getIsUserAdmin(int userId) {
+    public boolean isUserAdmin(int userId) {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_USER";
+            String query = "SELECT * FROM tb_user";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {

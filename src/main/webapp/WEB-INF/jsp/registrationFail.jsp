@@ -34,9 +34,9 @@
         <br>
         <p class="lead">Taki użytkownik istnieje już w bazie danych! Wprowadź inne dane lub zaloguj się na swoje
             konto.</p>
-        <a href="http://localhost:8080/user/signup">Rejestracja</a>
+        <a href="http://localhost:8081/user/signup">Rejestracja</a>
         <br><br>
-        <a href="http://localhost:8080/user/login">Logowanie</a>
+        <a href="http://localhost:8081/user/login">Logowanie</a>
 
     </div>
 </main>

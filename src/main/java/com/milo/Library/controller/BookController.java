@@ -44,9 +44,9 @@ public class BookController {
         return "BorrowBook";
     }
 
-    @GetMapping("/toBorrow")
+    @GetMapping("/borrowed")
     public String borrowedBooks() {
-        return "booksToBorrow";
+        return "borrowed";
     }
 
     @RequestMapping("/showQrCode{id}")

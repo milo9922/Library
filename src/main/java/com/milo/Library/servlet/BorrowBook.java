@@ -30,7 +30,7 @@ public class BorrowBook extends HttpServlet {
                         Integer.parseInt(request.getParameter("id")),
                         new UserDao().getUserIdByName((String) request.getSession().getAttribute("user"))
                 );
-        response.sendRedirect("/books/toBorrow");
+        response.sendRedirect("/books/borrowed");
     }
 
 }

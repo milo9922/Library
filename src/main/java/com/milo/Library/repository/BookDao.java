@@ -23,7 +23,7 @@ public class BookDao extends DbConnection {
 
         try {
             conn = getConnection();
-            String sql = "INSERT INTO TB_BOOK(Title, Author, PagesNum, AddedBy, AddDate, NumberOfBorrows) VALUES (?, ?, ?, ?, CURRENT_DATE, 0)";
+            String sql = "INSERT INTO tb_book(Title, Author, PagesNum, AddedBy, AddDate, NumberOfBorrows) VALUES (?, ?, ?, ?, CURRENT_DATE, 0)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, title);
             statement.setString(2, author);
@@ -56,7 +56,7 @@ public class BookDao extends DbConnection {
     public void removeBook(int bookId) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM TB_BOOK WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM tb_book WHERE BookID = ?");
             ps.setInt(1, bookId);
             ps.executeUpdate();
             conn.close();
@@ -68,7 +68,7 @@ public class BookDao extends DbConnection {
     public Book getSingleBookById(int bookId) {
         try {
             conn = getConnection();
-            String query = "SELECT * FROM TB_BOOK WHERE BookID = ?";
+            String query = "SELECT * FROM tb_book WHERE BookID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, bookId);
             ResultSet rs = preparedStatement.executeQuery();
@@ -102,7 +102,7 @@ public class BookDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_BOOK";
+            String query = "SELECT * FROM tb_book";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
@@ -138,9 +138,9 @@ public class BookDao extends DbConnection {
     public void borrowBook(int bookId, int userId) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, BorrowQrCode = ?, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE tb_book SET BorrowedBy = ?, BorrowDate = CURRENT_DATE, BorrowQrCode = ?, ReturnDate = NULL, NumberOfBorrows = NumberOfBorrows + 1 WHERE BookID = ?");
             ps.setInt(1, userId);
-            ps.setBlob(2, new BookService().generateBorrowIdQrCodeBis());
+            ps.setBlob(2, new BookService().generateBorrowIdQrCodeBis(bookId));
             ps.setInt(3, bookId);
             ps.executeUpdate();
             conn.close();
@@ -152,7 +152,7 @@ public class BookDao extends DbConnection {
     public void returnBook(int bookId) {
         try {
             conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE TB_BOOK SET BorrowedBy = null, BorrowDate = NULL, ReturnDate = CURRENT_DATE WHERE BookID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE tb_book SET BorrowedBy = null, BorrowDate = NULL, ReturnDate = CURRENT_DATE WHERE BookID = ?");
             ps.setInt(1, bookId);
             ps.executeUpdate();
             conn.close();
@@ -165,7 +165,7 @@ public class BookDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_BOOK";
+            String query = "SELECT * FROM tb_book";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
@@ -189,7 +189,7 @@ public class BookDao extends DbConnection {
         try {
             conn = getConnection();
             Statement statement = conn.createStatement();
-            String query = "SELECT * FROM TB_BOOK";
+            String query = "SELECT * FROM tb_book";
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {

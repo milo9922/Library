@@ -36,10 +36,11 @@ public class BookService {
         return latestBooks.stream().limit(howMany).collect(Collectors.toList());
     }
 
-    public ByteArrayInputStream generateBorrowIdQrCodeBis() throws WriterException, IOException {
+    public ByteArrayInputStream generateBorrowIdQrCodeBis(int bookId) throws WriterException, IOException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        String uuid = UUID.randomUUID().toString();
-        BitMatrix bitMatrix = qrCodeWriter.encode(uuid, BarcodeFormat.QR_CODE, 250, 250);
+//        String uuid = UUID.randomUUID().toString();
+        String bookID = String.valueOf(bookId);
+        BitMatrix bitMatrix = qrCodeWriter.encode(bookID, BarcodeFormat.QR_CODE, 250, 250);
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
         return new ByteArrayInputStream(pngOutputStream.toByteArray());
