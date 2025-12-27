@@ -82,7 +82,7 @@ public class BookDao extends DbConnection {
                 Date addDate = rs.getDate("AddDate");
                 int borrowedBy = rs.getInt("BorrowedBy");
                 Date borrowDate = rs.getDate("BorrowDate");
-                Blob borrowQrCode = rs.getBlob("BorrowQrCode");
+                byte[] borrowQrCode = rs.getBytes("BorrowQrCode");
                 Date returnDate = rs.getDate("ReturnDate");
                 int numberOfBorrows = rs.getInt("NumberOfBorrows");
 
@@ -114,7 +114,7 @@ public class BookDao extends DbConnection {
                 Date addDate = rs.getDate("AddDate");
                 int borrowedBy = rs.getInt("BorrowedBy");
                 Date borrowDate = rs.getDate("BorrowDate");
-                Blob borrowQrCode = rs.getBlob("BorrowQrCode");
+                byte[] borrowQrCode = rs.getBytes("BorrowQrCode");
                 Date returnDate = rs.getDate("ReturnDate");
                 int numberOfBorrows = rs.getInt("NumberOfBorrows");
 

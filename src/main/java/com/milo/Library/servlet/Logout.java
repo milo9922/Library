@@ -1,12 +1,12 @@
 package com.milo.Library.servlet;
 
 import com.milo.Library.service.UserService;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/user/", name = "Logout")
@@ -14,6 +14,7 @@ public class Logout extends HttpServlet {
 
     private static void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+
         if (new UserService().isUserLogged(session)) {
             session.setAttribute("isLogged", false);
             session.setAttribute("user", "");

@@ -3,11 +3,10 @@ package com.milo.Library.servlet;
 import com.milo.Library.entity.User;
 import com.milo.Library.repository.UserDao;
 import com.milo.Library.service.UserService;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/user/", name = "Register")
 public class Register extends HttpServlet {
@@ -29,8 +28,7 @@ public class Register extends HttpServlet {
                     response.sendRedirect("http://localhost:8081/user/register/fail");
                 }
             }
-        } catch
-        (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
